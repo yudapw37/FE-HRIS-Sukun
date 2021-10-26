@@ -173,25 +173,29 @@
           </v-card-text>
         </v-card>
       </v-col>
-      <v-col class="px-1 py-1 mt-1" cols="12" sm="4" md="4">
-        <v-card class="d-none d-md-block" elevation="5">
-          <v-card-text class="py-1 px-1">
-            <GChart
-              type="PieChart"
-              :data="chartData"
-              :options="chartOptionsGoogle"
-            />
-          </v-card-text>
-        </v-card>
-
-        <v-card class="d-sm-block d-md-none" elevation="5">
-          <v-card-text class="py-1 px-1">
-            <GChart
-              type="PieChart"
-              :data="chartData"
-              :options="chartOptionsGoogleMobile"
-            />
-          </v-card-text>
+      <v-col class="pa-2 mb-3" cols="12" sm="4" md="4">
+        <v-card class="pa-md-4" height="355px" elevation="5">
+          <header class="fontall pa-2 mb-3" style="text-align: center">
+            Gender Diversity
+          </header>
+          <vc-donut
+            class="fontall"
+            background="white"
+            foreground="grey"
+            :size="200"
+            unit="px"
+            :thickness="25"
+            has-legend
+            legend-placement="bottom"
+            :sections="sections"
+            :total="100"
+            :start-angle="0"
+            :auto-adjust-text-size="true"
+            @section-click="handleSectionClick"
+          >
+            <header>Total</header>
+            <header>100</header>
+          </vc-donut>
         </v-card>
       </v-col>
     </v-row>
@@ -213,6 +217,10 @@ const gradients = [
 export default {
   name: "Dashboard",
   data: () => ({
+    sections: [
+      { label: "Laki-laki", value: 60, color: "#444941" },
+      { label: "Perempuan", value: 40, color: "#357C6F" },
+    ],
     drawer: null,
     BaseUrlGet: "",
     authtoken: "",
@@ -302,6 +310,9 @@ export default {
         this.$router.push("/");
       }
     },
+  },
+  handleSectionClick(section, event) {
+    console.log(`${section.label} clicked.`);
   },
 };
 </script>

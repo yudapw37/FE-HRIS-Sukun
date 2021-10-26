@@ -6,6 +6,10 @@ import vuetify from './plugins/vuetify'
 import { BootstrapVue } from 'bootstrap-vue'
 import VueApexCharts from 'vue-apexcharts'
 import VueGoogleCharts from 'vue-google-charts'
+import Donut from 'vue-css-donut-chart';
+import 'vue-css-donut-chart/dist/vcdonut.css';
+
+Vue.use(Donut);
  
 Vue.use(VueGoogleCharts)
 
