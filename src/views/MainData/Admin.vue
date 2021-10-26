@@ -49,41 +49,49 @@
                   <v-container>
                     <v-row>
                       <v-col cols="12" sm="12" md="12" class="pa-1">
-                        <span class="fontall">Pilih Role Admin</span>
                         <v-select
                           v-model="defaultItem.role"
                           :items="itemsrole"
+                          label="Pilih Role Admin"
+                          class="fontall"
                           item-text="name"
                           item-value="id"
                           outlined
+                          color="#25695c"
                           dense
                           clearable
                           :rules="[(v) => !!v || 'Field is required']"
                         ></v-select>
                       </v-col>
                       <v-col cols="12" sm="6" md="6" class="pa-1">
-                        <span class="fontall">Nama Admin</span>
                         <v-text-field
                           v-model="defaultItem.nama"
                           outlined
+                          label="Nama Admin"
+                          class="fontall"
+                          color="#25695c"
                           dense
                           :rules="[(v) => !!v || 'Field is required']"
                         ></v-text-field>
                       </v-col>
                       <v-col cols="12" sm="6" md="6" class="pa-1">
-                        <span class="fontall">No Telp</span>
                         <v-text-field
                           v-model="defaultItem.no_telp"
                           outlined
+                          label="No Telp"
+                          class="fontall"
+                          color="#25695c"
                           dense
                           :rules="[(v) => !!v || 'Field is required']"
                         ></v-text-field>
                       </v-col>
                       <v-col cols="12" sm="6" md="6" class="pa-1">
-                        <span class="fontall">Email</span>
                         <v-text-field
                           v-model="defaultItem.email"
                           outlined
+                          label="No Telp"
+                          class="fontall"
+                          color="#25695c"
                           dense
                           :rules="[rules.required, rules.email]"
                         ></v-text-field>
@@ -95,32 +103,38 @@
                         md="6"
                         class="pa-1"
                       >
-                        <span class="fontall">Password</span>
                         <v-text-field
                           v-model="defaultItem.password"
                           :rules="[rules.required, rules.countermin]"
                           outlined
+                          label="Password"
+                          class="fontall"
+                          color="#25695c"
                           dense
                         ></v-text-field>
                       </v-col>
                       <v-col cols="12" sm="6" md="6" class="pa-1">
-                        <span class="fontall">Pilih Status Admin</span>
                         <v-select
                           v-model="defaultItem.status_admin"
                           :items="itemsstatus_admin"
                           item-text="text"
                           item-value="value"
                           outlined
+                          label="Pilih Status Admin"
+                          class="fontall"
+                          color="#25695c"
                           dense
                           clearable
                           :rules="[(v) => !!v || 'Field is required']"
                         ></v-select>
                       </v-col>
                       <v-col cols="12" sm="12" md="12" class="pa-1">
-                        <span class="fontall">Alamat</span>
                         <v-textarea
                           v-model="defaultItem.alamat"
                           outlined
+                          label="Alamat"
+                          class="fontall"
+                          color="#25695c"
                           dense
                           rows="3"
                           :rules="[(v) => !!v || 'Field is required']"

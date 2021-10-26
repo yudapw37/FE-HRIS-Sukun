@@ -61,13 +61,15 @@
                   </v-row>
                   <v-row>
                     <v-col cols="12" sm="12" md="12">
-                      <span>Pilih Tambah Menu Access</span>
                       <v-select
                         v-model="menudropdown"
                         :items="itemsMenu"
                         item-value="id"
                         item-text="name"
                         outlined
+                        label="Pilih Tambah Menu Access"
+                        class="fontall"
+                        color="#25695c"
                         placeholder="Pilih Tambah Menu Access"
                         dense
                         v-on:change="selectedMenuAccess($event)"
@@ -355,7 +357,7 @@ export default {
         } else {
           this.snackbar = true;
           this.colorsnackbar = "red";
-          this.textsnackbar = "Menu Sudah Ada Bro..!!!";
+          this.textsnackbar = "Menu Sudah Tersedia";
         }
         // this.menudropdown.id = '';
       }
