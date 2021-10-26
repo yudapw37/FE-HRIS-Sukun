@@ -18,19 +18,9 @@
 
       <v-layout column align-center>
         <v-flex class="pa-10 pb-8 text-center">
-          <!-- <v-badge
-            bordered
-            bottom
-            color="green"
-            dot
-            offset-x="10"
-            offset-y="10"
-          > -->
           <v-avatar size="80">
             <img src="images/avatar.png" />
           </v-avatar>
-          <!-- </v-badge> -->
-          <v-spacer></v-spacer>
           <v-list-item-title class="fontall" style="color: #25695c">
             {{ nameadmin }}
           </v-list-item-title>
@@ -111,32 +101,112 @@
 
       <v-spacer></v-spacer>
 
-      <v-menu offset-y open-on-hover>
+      <v-menu offset-y open-on-hover min-width="230">
         <template v-slot:activator="{ on }">
-          <v-btn class="px-1 mr-1" text color="black" size="200" v-on="on">
-            <div style="text-align: right" class="mr-2">
+          <v-btn class="px-1 mr-1" text color="black" v-on="on">
+            <!-- <div style="text-align: right" class="mr-2">
               <p style="font-weight: bold" class="font-weight-bolder mb-0">
                 {{ nameadmin }}
               </p>
               <span style="font-size: 9px">{{ statusadmin }}</span>
-            </div>
-            <v-avatar size="35">
-              <v-icon x-large color="black">mdi-account-circle</v-icon>
-            </v-avatar>
+            </div> -->
+            <v-badge
+              bottom
+              color="success"
+              overlap
+              offset-x="12"
+              offset-y="12"
+              class="ms-4"
+              dot
+            >
+              <v-avatar size="35">
+                <img src="images/avatar.png" />
+              </v-avatar>
+            </v-badge>
+          </v-btn>
+          <v-btn icon>
+            <v-icon>mdi-bell-outline</v-icon>
           </v-btn>
         </template>
-        <v-list rounded style="overflow-y: hidden !important">
-          <v-list-item
-            v-for="(item, index) in itemsprofile"
-            :key="index"
-            @click="selectSection(item)"
-            color="primary"
-          >
-            <v-list-item-title
-              ><v-icon small color="black">{{ item.icon }}</v-icon>
-              {{ item.title }}</v-list-item-title
+        <v-list class="fontall">
+          <div class="pb-3 pt-2">
+            <v-badge
+              bottom
+              color="success"
+              overlap
+              offset-x="12"
+              offset-y="12"
+              class="ms-4"
+              dot
             >
+              <v-avatar size="35">
+                <img src="images/avatar.png" />
+              </v-avatar>
+            </v-badge>
+            <div
+              class="d-inline-flex flex-column justify-center ms-3"
+              style="vertical-align: middle"
+            >
+              <span class="text--primary font-weight-semibold mb-n1">
+                {{ nameadmin }}
+              </span>
+              <small class="text--disabled text-capitalize">{{
+                statusadmin
+              }}</small>
+            </div>
+          </div>
+          <v-divider></v-divider>
+
+          <!-- Profile -->
+          <v-list-item link>
+            <v-list-item-icon class="me-2">
+              <v-icon size="22"> mdi-account-outline </v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>Profile</v-list-item-title>
+            </v-list-item-content>
           </v-list-item>
+
+          <!-- Chat -->
+          <v-list-item link>
+            <v-list-item-icon class="me-2">
+              <v-icon size="22"> mdi-chat-outline </v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>Chat</v-list-item-title>
+            </v-list-item-content>
+
+            <v-list-item-action>
+              <v-badge inline color="error" content="2"> </v-badge>
+            </v-list-item-action>
+          </v-list-item>
+
+          <!-- Email -->
+          <v-list-item link>
+            <v-list-item-icon class="me-2">
+              <v-icon size="22"> mdi-email-outline </v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>Inbox</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-divider></v-divider>
+          <!-- Reset&Logout -->
+
+          <v-list-item-content>
+            <v-list-item
+              v-for="(item, index) in itemsprofile"
+              :key="index"
+              @click="selectSection(item)"
+            >
+              <v-list-item-icon class="me-2">
+                <v-icon size="22">{{ item.icon }}</v-icon>
+              </v-list-item-icon>
+              <v-list-item-content>
+                <v-list-item-title>{{ item.title }}</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list-item-content>
         </v-list>
       </v-menu>
     </v-app-bar>
@@ -162,7 +232,7 @@ export default {
     DashboardLink: "/Dashboard",
     itemsprofile: [
       { title: "Ganti Password", icon: "mdi-lock-reset" },
-      { title: "Logout", icon: "mdi-logout" },
+      { title: "Logout", icon: "mdi-logout-variant" },
     ],
     User: [],
     items: [],

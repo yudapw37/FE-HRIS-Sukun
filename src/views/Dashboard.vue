@@ -151,23 +151,21 @@
               line-width="2"
               padding="16"
               color="white"
-              style="fontall"
+              class="fontall"
             ></v-sparkline>
           </v-sheet>
 
           <v-card-text class="pt-0">
             <div class="text-h6 font-weight-light mb-2">
-              <v-btn block text small class="grey--text;fontall"
+              <v-btn block text small class="fontall grey--text"
                 >GRAFIK PRODUKTIFITAS</v-btn
               >
             </div>
 
-            <div class="subheading font-weight-light grey--text">
-              Last Campaign Performance
-            </div>
+            <div class="fontall grey--text">Last Campaign Performance</div>
             <v-divider class="my-2"></v-divider>
             <v-icon class="mr-2" small> mdi-clock </v-icon>
-            <span class="text-caption grey--text font-weight-light"
+            <span class="fontall grey--text font-weight-light"
               >Grafik Hasil Pengelolaan 1 Tahun
             </span>
           </v-card-text>
@@ -178,24 +176,16 @@
           <header class="fontall pa-2 mb-3" style="text-align: center">
             Gender Diversity
           </header>
-          <vc-donut
-            class="fontall"
-            background="white"
-            foreground="grey"
-            :size="200"
-            unit="px"
-            :thickness="25"
-            has-legend
-            legend-placement="bottom"
-            :sections="sections"
-            :total="100"
-            :start-angle="0"
-            :auto-adjust-text-size="true"
-            @section-click="handleSectionClick"
-          >
-            <header>Total</header>
-            <header>100</header>
-          </vc-donut>
+          <div>
+            <apexchart
+              width="350"
+              type="donut"
+              :options="chartOptions"
+              :series="series"
+              :color="colors"
+              class="fontall"
+            ></apexchart>
+          </div>
         </v-card>
       </v-col>
     </v-row>
@@ -204,7 +194,7 @@
 
 <script>
 // import axios from "axios";
-
+import VueApexCharts from "vue-apexcharts";
 const gradients = [
   ["#222"],
   ["#42b3f4"],
@@ -216,11 +206,31 @@ const gradients = [
 
 export default {
   name: "Dashboard",
+  components: {
+    apexchart: VueApexCharts,
+  },
   data: () => ({
-    sections: [
-      { label: "Laki-laki", value: 60, color: "#444941" },
-      { label: "Perempuan", value: 40, color: "#357C6F" },
-    ],
+    series: [100, 55],
+    chartOptions: {
+      chart: {
+        type: "donut",
+      },
+      responsive: [
+        {
+          breakpoint: 480,
+          options: {
+            chart: {
+              width: 100,
+            },
+          },
+        },
+      ],
+      legend: {
+        position: "bottom",
+      },
+      labels: ["Laki-laki", "Perempuan"],
+      colors: ["#444941", "#99A799"],
+    },
     drawer: null,
     BaseUrlGet: "",
     authtoken: "",
@@ -252,7 +262,7 @@ export default {
 
     gradientDirection: "top",
     gradients,
-    gradient: gradients[5],
+    gradient: gradients[10],
     labelsSparkline: [
       "Jan",
       "Feb",
