@@ -31,7 +31,7 @@
           <v-text-field
             v-model="search"
             append-icon="mdi-magnify"
-            label="Search"
+            label="Search here..."
             single-line
             hide-details
           ></v-text-field>
@@ -189,7 +189,7 @@
                             :headers="headersProduct"
                             :items="detailTask.list_order"
                             :search="search"
-                            class="rounded elevation-1 mx-4 pa-1 my-3"
+                            class="rounded elevation-1 mx-4 pa-1 my-3 fontall"
                             hide-default-footer
                             disable-pagination
                           >

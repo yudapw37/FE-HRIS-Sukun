@@ -5,7 +5,6 @@
       :items="itemsbr"
       large
       color="black"
-      style="font-weight: bold"
       ><template v-slot:divider>
         <v-icon>mdi-chevron-right</v-icon>
       </template></v-breadcrumbs
@@ -15,10 +14,10 @@
       :headers="headers"
       :items="dataobject"
       :search="search"
-      class="rounded elevation-6 mx-3 pa-1 fontall"
+      class="rounded elevation-6 mx-3 pa-1 itemchild"
     >
       <template v-slot:item.role_name="{ item }">
-        <v-chip :color="getColorStatus(item.role)" dark>
+        <v-chip label :color="getColorStatus(item.role)" dark>
           {{ item.role_name }}
         </v-chip>
       </template>
@@ -28,7 +27,7 @@
           <v-text-field
             v-model="search"
             append-icon="mdi-magnify"
-            label="Search"
+            label="Search here..."
             single-line
             hide-details
           ></v-text-field>
@@ -44,7 +43,7 @@
                 Edit Menu Access
               </v-card-title>
               <!-- <v-divider></v-divider> -->
-              <v-card-text>
+              <v-card-text class="fontall">
                 <v-container>
                   <v-row>
                     <v-col cols="12" sm="4" md="4">
@@ -62,13 +61,15 @@
                   </v-row>
                   <v-row>
                     <v-col cols="12" sm="12" md="12">
+                      <span>Pilih Tambah Menu Access</span>
                       <v-select
                         v-model="menudropdown"
                         :items="itemsMenu"
                         item-value="id"
                         item-text="name"
-                        label="Pilih Tambah Menu Access"
                         outlined
+                        placeholder="Pilih Tambah Menu Access"
+                        dense
                         v-on:change="selectedMenuAccess($event)"
                       ></v-select>
                     </v-col>
@@ -86,9 +87,9 @@
                           <v-icon
                             class="mr-2"
                             @click="deletelistmenu(item)"
-                            color="red"
+                            color="#d42f2f"
                           >
-                            mdi-delete
+                            mdi-delete-outline
                           </v-icon>
                           <!-- <v-icon @click="deleteItem(item)" color="red"> mdi-delete </v-icon> -->
                         </template>
@@ -99,10 +100,10 @@
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="red" elevation="1" outlined @click="close">
+                <v-btn dark color="red" @click="close">
                   <v-icon left> mdi-close-circle-outline </v-icon> Cancel
                 </v-btn>
-                <v-btn color="success" elevation="1" outlined @click="save">
+                <v-btn dark color="#25695c" @click="save">
                   <v-icon left> mdi-checkbox-marked-circle-outline </v-icon>
                   Save
                 </v-btn>
@@ -112,8 +113,8 @@
         </v-toolbar>
       </template>
       <template v-slot:item.actions="{ item }">
-        <v-icon class="mr-2" @click="showEditModal(item)" color="warning">
-          mdi-pencil-circle
+        <v-icon class="mr-2" @click="showEditModal(item)" color="#bf9168">
+          mdi-pencil-outline
         </v-icon>
         <!-- <v-icon @click="deleteItem(item)" color="red"> mdi-delete </v-icon> -->
       </template>

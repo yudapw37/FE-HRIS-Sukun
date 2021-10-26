@@ -15,10 +15,10 @@
       :headers="headers"
       :items="dataobject"
       :search="search"
-      class="rounded elevation-6 mx-3 pa-1 fontall"
+      class="rounded elevation-6 mx-3 pa-1 itemchild"
     >
       <template v-slot:item.role_name="{ item }">
-        <v-chip :color="getColorStatus(item.role)" dark>
+        <v-chip label :color="getColorStatus(item.role)" dark>
           {{ item.role_name }}
         </v-chip>
       </template>
@@ -28,13 +28,13 @@
           <v-text-field
             v-model="search"
             append-icon="mdi-magnify"
-            label="Search"
+            label="Search here..."
             single-line
             hide-details
           ></v-text-field>
           <v-divider class="mx-4" inset vertical></v-divider>
           <v-spacer></v-spacer>
-          <v-btn dark class="mb-2" @click="showAddModal()" color="green">
+          <v-btn dark class="mb-2" @click="showAddModal()" color="#25695c">
             <v-icon small>mdi-plus</v-icon> Add Item
           </v-btn>
           <!-- Modal Add Edit -->
@@ -49,38 +49,42 @@
                   <v-container>
                     <v-row>
                       <v-col cols="12" sm="12" md="12" class="pa-1">
+                        <span class="fontall">Pilih Role Admin</span>
                         <v-select
                           v-model="defaultItem.role"
                           :items="itemsrole"
                           item-text="name"
                           item-value="id"
-                          label="Pilih Role Admin"
                           outlined
+                          dense
                           clearable
                           :rules="[(v) => !!v || 'Field is required']"
                         ></v-select>
                       </v-col>
                       <v-col cols="12" sm="6" md="6" class="pa-1">
+                        <span class="fontall">Nama Admin</span>
                         <v-text-field
                           v-model="defaultItem.nama"
-                          label="Nama Admin"
                           outlined
+                          dense
                           :rules="[(v) => !!v || 'Field is required']"
                         ></v-text-field>
                       </v-col>
                       <v-col cols="12" sm="6" md="6" class="pa-1">
+                        <span class="fontall">No Telp</span>
                         <v-text-field
                           v-model="defaultItem.no_telp"
-                          label="No Telp"
                           outlined
+                          dense
                           :rules="[(v) => !!v || 'Field is required']"
                         ></v-text-field>
                       </v-col>
                       <v-col cols="12" sm="6" md="6" class="pa-1">
+                        <span class="fontall">Email</span>
                         <v-text-field
                           v-model="defaultItem.email"
-                          label="Email"
                           outlined
+                          dense
                           :rules="[rules.required, rules.email]"
                         ></v-text-field>
                       </v-col>
@@ -91,30 +95,33 @@
                         md="6"
                         class="pa-1"
                       >
+                        <span class="fontall">Password</span>
                         <v-text-field
                           v-model="defaultItem.password"
-                          label="Password"
                           :rules="[rules.required, rules.countermin]"
                           outlined
+                          dense
                         ></v-text-field>
                       </v-col>
                       <v-col cols="12" sm="6" md="6" class="pa-1">
+                        <span class="fontall">Pilih Status Admin</span>
                         <v-select
                           v-model="defaultItem.status_admin"
                           :items="itemsstatus_admin"
                           item-text="text"
                           item-value="value"
-                          label="Pilih Status Admin"
                           outlined
+                          dense
                           clearable
                           :rules="[(v) => !!v || 'Field is required']"
                         ></v-select>
                       </v-col>
                       <v-col cols="12" sm="12" md="12" class="pa-1">
+                        <span class="fontall">Alamat</span>
                         <v-textarea
                           v-model="defaultItem.alamat"
-                          label="Alamat"
                           outlined
+                          dense
                           rows="3"
                           :rules="[(v) => !!v || 'Field is required']"
                         ></v-textarea>
@@ -125,10 +132,10 @@
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="red" elevation="1" outlined @click="close">
+                <v-btn dark color="red" @click="close">
                   <v-icon left> mdi-close-circle-outline </v-icon> Cancel
                 </v-btn>
-                <v-btn color="success" elevation="1" outlined @click="save">
+                <v-btn dark color="#25695c" @click="save">
                   <v-icon left> mdi-checkbox-marked-circle-outline </v-icon>
                   Save
                 </v-btn>
@@ -144,16 +151,11 @@
               >
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="red" elevation="1" outlined @click="closeDelete">
+                <v-btn dark color="red" @click="closeDelete">
                   <v-icon left> mdi-close-circle-outline </v-icon>
                   Cancel
                 </v-btn>
-                <v-btn
-                  color="success"
-                  elevation="1"
-                  outlined
-                  @click="deleteItemConfirm"
-                >
+                <v-btn dark color="#25695c" @click="deleteItemConfirm">
                   <v-icon left> mdi-checkbox-marked-circle-outline </v-icon>
                   OK</v-btn
                 >
@@ -162,6 +164,7 @@
             </v-card>
           </v-dialog>
 
+          <!-- Modal Reset -->
           <v-dialog v-model="dialogReset" max-width="500px">
             <v-card>
               <v-card-title class="headline"
@@ -169,10 +172,10 @@
               >
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="red" outlined @click="close">
+                <v-btn dark color="red" @click="close">
                   <v-icon left> mdi-close-circle-outline </v-icon> Cancel</v-btn
                 >
-                <v-btn color="success" outlined @click="resetItemConfirm"
+                <v-btn dark color="#25695c" @click="resetItemConfirm"
                   ><v-icon left> mdi-checkbox-marked-circle-outline </v-icon>
                   OK</v-btn
                 >
@@ -186,14 +189,14 @@
         <!-- <v-icon class="mr-2" @click="detailItem(item)" color="primary">
           mdi-information
         </v-icon> -->
-        <v-icon class="mr-1" @click="showEditModal(item)" color="warning">
-          mdi-pencil-circle
+        <v-icon class="mr-1" @click="showEditModal(item)" color="#bf9168">
+          mdi-pencil-outline
         </v-icon>
-        <v-icon class="mr-1" @click="resetItem(item)" color="blue">
+        <v-icon class="mr-1" @click="resetItem(item)" color="#25695C">
           mdi-autorenew
         </v-icon>
-        <v-icon @click="showDeleteModal(item)" color="red">
-          mdi-delete-circle
+        <v-icon @click="showDeleteModal(item)" color="#d42f2f">
+          mdi-delete-outline
         </v-icon>
       </template>
     </v-data-table>

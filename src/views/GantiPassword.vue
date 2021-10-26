@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-breadcrumbs
-      class="breadcrumbsmain"
+      class="breadcrumbsmain fontall"
       :items="itemsbr"
       divider=">"
       large
@@ -28,23 +28,24 @@
             @click:append="showPassword = !showPassword"
             :rules="[(v) => !!v || 'Field is required']"
           />
+
           <v-text-field
             v-model="confirmpassword"
-            label="Konfirmasi Password"
             :type="showPassword ? 'text' : 'password'"
             prepend-icon="mdi-lock"
+            label="Konfirmasi Password"
             :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
             @click:append="showPassword = !showPassword"
             :rules="[(v) => !!v || 'Field is required']"
           />
         </v-card-text>
 
-        <v-divider></v-divider>
         <v-card-actions>
           <v-btn
+            dark
             width="200"
             @click="gantipassword()"
-            color="info"
+            color="#25695c"
             class="mx-auto"
             >Ganti Password</v-btn
           >
