@@ -26,6 +26,7 @@
         <v-card-text class="pt-1 pb-0 px-3">
           <v-text-field
             label="Email"
+            class="fontall"
             name="email"
             v-model="email"
             placeholder="Masukkan Email"
@@ -39,6 +40,7 @@
           ></v-text-field>
           <v-text-field
             label="Password"
+            class="fontall"
             v-model="password"
             placeholder="Masukkan Password"
             :type="showPassword ? 'text' : 'password'"
@@ -56,6 +58,7 @@
 
         <v-card-actions class="pt-0 pb-2 px-3 mb-2">
           <v-btn
+            dark
             block
             large
             width="200"
@@ -71,7 +74,7 @@
               color="#25695c"
             >
             </v-progress-circular>
-            <h2 v-if="load == false">Login</h2>
+            <h2 v-if="load == false" class="fontall">Login</h2>
           </v-btn>
         </v-card-actions>
       </v-card>
