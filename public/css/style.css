@@ -5,25 +5,25 @@
 }
 
 body {
-    font-family: "Trirong", sans-serif;
+    font-family: "Montserrat", sans-serif;
     /* font-weight: 700; */
 }
 
 .v-main {
-    background-color: rgb(171, 183, 197) !important;
+    background-color: rgb(172, 180, 176) !important;
 }
 
 .fontall {
-    font-family: "Trirong", sans-serif;
-    /* font-weight: 700; */
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
 }
 
 .headermodalstyle {
-    font-family: "Trirong", sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 50px;
     margin-bottom: 15px;
     /* text-shadow: 3px 3px 3px #aaa9a9; */
-    background-color: rgb(67, 68, 68);
+    background-color: #25695c;
     color: rgb(252, 247, 247);
 }
 
@@ -37,9 +37,15 @@ body {
     padding-left: 10px;
     bottom: 0;
     width: 80%;
-    background-color: rgb(53, 52, 52);
+    /* background-color: rgb(53, 52, 52); */
     /* color: white; */
     text-align: center;
+}
+
+.fontall-center {
+    text-align: center;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
 }
 
 .v-sheet--offset {
@@ -75,10 +81,13 @@ body {
 }
 
 .itemparent {
+    font-family: "Montserrat", sans-serif;
     font-size: 14px !important;
+    font-weight: 700 !important;
 }
 
 .itemchild {
+    font-family: "Montserrat", sans-serif;
     padding-left: 45px !important;
     font-size: 14px !important;
 }
