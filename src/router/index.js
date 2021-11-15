@@ -10,6 +10,24 @@ import AdminRole from '../views/MainData/AdminRole.vue'
 
 import PendingTask from '../views/Task/PendingTask.vue'
 
+import FilterDepart from '../views/DataKaryawan/FilterDepart.vue'
+import FilterLokasi from '../views/DataKaryawan/FilterLokasi.vue'
+import Status from '../views/DataKaryawan/Status.vue'
+
+import SuratKontrak from '../views/Dokumen/SuratKontrak.vue'
+
+import DataPelamar from '../views/Rekruitmen/DataPelamar.vue'
+import PermintaanKaryawanBaru from '../views/Rekruitmen/PermintaanKaryawanBaru.vue'
+import SeleksiKaryawan from '../views/Rekruitmen/SeleksiKaryawan.vue'
+
+import HistoryKehadiran from '../views/TimeAttendance/HistoryKehadiran.vue'
+import IjinKaryawan from '../views/TimeAttendance/IjinKaryawan.vue'
+import LemburanKaryawan from '../views/TimeAttendance/LemburanKaryawan.vue'
+import ListKehadiranHarian from '../views/TimeAttendance/ListKehadiranHarian.vue'
+
+import HistoryTraining from '../views//Training/HistoryTraining.vue'
+import PermintaanTraining from '../views//Training/PermintaanTraining.vue'
+import TrainingBerjalan from '../views//Training/TrainingBerjalan.vue'
 
 Vue.use(VueRouter)
 
@@ -55,9 +73,95 @@ const routes = [
     name: 'PendingTask',
     component: PendingTask
   },
-  
-  
-  
+
+  {
+    path: '/FilterDepart',
+    name: 'FilterDepart',
+    component: FilterDepart
+  },
+
+  {
+    path: '/FilterLokasi',
+    name: 'FilterLokasi',
+    component: FilterLokasi
+  },
+
+  {
+    path: '/Status',
+    name: 'Status',
+    component: Status
+  },
+
+  {
+    path: '/SuratKontrak',
+    name: 'SuratKontrak',
+    component: SuratKontrak
+  },
+
+  {
+    path: '/DataPelamar',
+    name: 'DataPelamar',
+    component: DataPelamar
+  },
+
+  {
+    path: '/PermintaanKaryawanBaru',
+    name: 'PermintaanKaryawanBaru',
+    component: PermintaanKaryawanBaru
+  },
+
+  {
+    path: '/SeleksiKaryawan',
+    name: 'SeleksiKaryawan',
+    component: SeleksiKaryawan
+  },
+
+  {
+    path: '/HistoryKehadiran',
+    name: 'HistoryKehadiran',
+    component: HistoryKehadiran
+  },
+
+  {
+    path: '/IjinKaryawan',
+    name: 'IjinKaryawan',
+    component: IjinKaryawan
+  },
+
+  {
+    path: '/LemburanKaryawan',
+    name: 'LemburanKaryawan',
+    component: LemburanKaryawan
+  },
+
+  {
+    path: '/ListKehadiran',
+    name: 'ListKehadiran',
+    component: ListKehadiran
+  },
+
+  {
+    path: '/ListKehadiranHarian',
+    name: 'ListKehadiranHarian',
+    component: ListKehadiranHarian
+  },
+
+  {
+    path: '/PermintaanTraining',
+    name: 'PermintaanTraining',
+    component: PermintaanTraining
+  },
+
+  {
+    path: '/TrainingBerjalan',
+    name: 'TrainingBerjalan',
+    component: TrainingBerjalan
+  },
+  {
+    path: '/HistoryTraining',
+    name: 'HistoryTraining',
+    component: HistoryTraining
+  },
 ]
 
 const router = new VueRouter({

@@ -172,7 +172,7 @@
         </v-card>
       </v-col>
       <v-col class="pa-2 mb-3" cols="12" sm="4" md="4">
-        <v-card class="pa-md-4" height="355px" elevation="5">
+        <v-card class="fontall pa-md-4" height="355px" elevation="5">
           <header class="fontall pa-2 mb-3" style="text-align: center">
             Gender Diversity
           </header>
