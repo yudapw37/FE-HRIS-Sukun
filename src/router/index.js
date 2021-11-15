@@ -113,7 +113,7 @@ const routes = [
   {
     path: '/SeleksiKaryawan',
     name: 'SeleksiKaryawan',
-    component: SeleksiKaryawan
+    component: SeleksiKaryawan  
   },
 
   {
@@ -127,7 +127,7 @@ const routes = [
     name: 'IjinKaryawan',
     component: IjinKaryawan
   },
-
+  
   {
     path: '/LemburanKaryawan',
     name: 'LemburanKaryawan',
@@ -135,15 +135,15 @@ const routes = [
   },
 
   {
-    path: '/ListKehadiran',
-    name: 'ListKehadiran',
-    component: ListKehadiran
-  },
-
-  {
     path: '/ListKehadiranHarian',
     name: 'ListKehadiranHarian',
     component: ListKehadiranHarian
+  },
+
+  {
+    path: '/HistoryTraining',
+    name: 'HistoryTraining',
+    component: HistoryTraining
   },
 
   {
@@ -157,11 +157,7 @@ const routes = [
     name: 'TrainingBerjalan',
     component: TrainingBerjalan
   },
-  {
-    path: '/HistoryTraining',
-    name: 'HistoryTraining',
-    component: HistoryTraining
-  },
+  
 ]
 
 const router = new VueRouter({
