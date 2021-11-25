@@ -10,24 +10,29 @@ import AdminRole from '../views/MainData/AdminRole.vue'
 
 import PendingTask from '../views/Task/PendingTask.vue'
 
-import FilterDepart from '../views/DataKaryawan/FilterDepart.vue'
-import FilterLokasi from '../views/DataKaryawan/FilterLokasi.vue'
-import Status from '../views/DataKaryawan/Status.vue'
+import Employee from '../views/Employee/Employee.vue'
 
-import SuratKontrak from '../views/Dokumen/SuratKontrak.vue'
+import Loan from '../views/Payroll/Loan.vue'
+import Reimbursement from '../views/Payroll/Reimbursement.vue'
+import Salary from '../views/Payroll/Salary.vue'
 
-import DataPelamar from '../views/Rekruitmen/DataPelamar.vue'
-import PermintaanKaryawanBaru from '../views/Rekruitmen/PermintaanKaryawanBaru.vue'
-import SeleksiKaryawan from '../views/Rekruitmen/SeleksiKaryawan.vue'
+import EmployeeAgrement from '../views/Utilities/EmployeeAgrement.vue'
+import Announcement from '../views/Utilities/Announcement.vue'
+import Letters from '../views/Utilities/Letters.vue'
 
-import HistoryKehadiran from '../views/TimeAttendance/HistoryKehadiran.vue'
-import IjinKaryawan from '../views/TimeAttendance/IjinKaryawan.vue'
-import LemburanKaryawan from '../views/TimeAttendance/LemburanKaryawan.vue'
-import ListKehadiranHarian from '../views/TimeAttendance/ListKehadiranHarian.vue'
+import JobSeekerProfile from '../views/Recruitment/JobSeekerProfile.vue'
+import OpenRecruitment from '../views/Recruitment/OpenRecruitment.vue'
+import ScheduleRecruitment from '../views/Recruitment/ScheduleRecruitment.vue'
+import SelectionResult from '../views/Recruitment/SelectionResult.vue'
+
+import DailyAttendance from '../views/TimeAttendance/DailyAttendance.vue'
+import HistoryAttendace from '../views/TimeAttendance/HistoryAttendace.vue'
+import EmployeePermit from '../views/TimeAttendance/EmployeePermit.vue'
+import EmployeeOvertime from '../views/TimeAttendance/EmployeeOvertime.vue'
 
 import HistoryTraining from '../views//Training/HistoryTraining.vue'
-import PermintaanTraining from '../views//Training/PermintaanTraining.vue'
-import TrainingBerjalan from '../views//Training/TrainingBerjalan.vue'
+import TrainingRequest from '../views//Training/TrainingRequest.vue'
+import TrainingOngoing from '../views//Training/TrainingOngoing.vue'
 
 Vue.use(VueRouter)
 
@@ -75,69 +80,93 @@ const routes = [
   },
 
   {
-    path: '/FilterDepart',
-    name: 'FilterDepart',
-    component: FilterDepart
+    path: '/Employee',
+    name: 'Employee',
+    component: Employee
   },
 
   {
-    path: '/FilterLokasi',
-    name: 'FilterLokasi',
-    component: FilterLokasi
+    path: '/Loan',
+    name: 'Loan',
+    component: Loan
   },
 
   {
-    path: '/Status',
-    name: 'Status',
-    component: Status
+    path: '/Reimbursement',
+    name: 'Reimbursement',
+    component: Reimbursement
   },
 
   {
-    path: '/SuratKontrak',
-    name: 'SuratKontrak',
-    component: SuratKontrak
+    path: '/Salary',
+    name: 'Salary',
+    component: Salary
   },
 
   {
-    path: '/DataPelamar',
-    name: 'DataPelamar',
-    component: DataPelamar
+    path: '/EmployeeAgrement',
+    name: 'EmployeeAgrement',
+    component: EmployeeAgrement
   },
 
   {
-    path: '/PermintaanKaryawanBaru',
-    name: 'PermintaanKaryawanBaru',
-    component: PermintaanKaryawanBaru
+    path: '/Announcement',
+    name: 'Announcement',
+    component: Announcement
   },
 
   {
-    path: '/SeleksiKaryawan',
-    name: 'SeleksiKaryawan',
-    component: SeleksiKaryawan  
+    path: '/Letters',
+    name: 'Letters',
+    component: Letters  
   },
 
   {
-    path: '/HistoryKehadiran',
-    name: 'HistoryKehadiran',
-    component: HistoryKehadiran
+    path: '/JobSeekerProfile',
+    name: 'JobSeekerProfile',
+    component: JobSeekerProfile
   },
 
   {
-    path: '/IjinKaryawan',
-    name: 'IjinKaryawan',
-    component: IjinKaryawan
+    path: '/OpenRecruitment',
+    name: 'OpenRecruitment',
+    component: OpenRecruitment
   },
   
   {
-    path: '/LemburanKaryawan',
-    name: 'LemburanKaryawan',
-    component: LemburanKaryawan
+    path: '/ScheduleRecruitment',
+    name: 'ScheduleRecruitment',
+    component: ScheduleRecruitment
   },
 
   {
-    path: '/ListKehadiranHarian',
-    name: 'ListKehadiranHarian',
-    component: ListKehadiranHarian
+    path: '/SelectionResult',
+    name: 'SelectionResult',
+    component: SelectionResult
+  },
+
+  {
+    path: '/DailyAttendance',
+    name: 'DailyAttendance',
+    component: DailyAttendance
+  },
+
+  {
+    path: '/HistoryAttendace',
+    name: 'HistoryAttendace',
+    component: HistoryAttendace
+  },
+
+  {
+    path: '/EmployeePermit',
+    name: 'EmployeePermit',
+    component: EmployeePermit
+  },
+
+  {
+    path: '/EmployeeOvertime',
+    name: 'EmployeeOvertime',
+    component: EmployeeOvertime
   },
 
   {
@@ -147,17 +176,16 @@ const routes = [
   },
 
   {
-    path: '/PermintaanTraining',
-    name: 'PermintaanTraining',
-    component: PermintaanTraining
+    path: '/TrainingRequest',
+    name: 'TrainingRequest',
+    component: TrainingRequest
   },
 
   {
-    path: '/TrainingBerjalan',
-    name: 'TrainingBerjalan',
-    component: TrainingBerjalan
+    path: '/TrainingOngoing',
+    name: 'TrainingOngoing',
+    component: TrainingOngoing
   },
-  
 ]
 
 const router = new VueRouter({

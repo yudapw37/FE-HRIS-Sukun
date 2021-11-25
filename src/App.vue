@@ -1,6 +1,6 @@
 <template>
   <v-app id="Trees">
-    <v-navigation-drawer :width="300" v-if="isLogin" v-model="drawer" app>
+    <v-navigation-drawer :width="277" v-if="isLogin" v-model="drawer" app>
       <!-- <v-list-item>
         <v-list-item-content>
           <v-list-item-title
@@ -17,7 +17,8 @@
       </v-list-item> -->
 
       <v-layout column align-center>
-        <v-flex class="pa-10 pb-8 text-center">
+        <!-- setting margin profil kiri -->
+        <v-flex class="pa-6 pb-4 text-center">
           <v-avatar size="80">
             <img src="images/avatar.png" />
           </v-avatar>
@@ -45,22 +46,25 @@
             <v-icon>mdi-account-supervisor-outline </v-icon>
           </v-list-item-icon>
 
-          <v-list-item-title class="itemparent"
-            >Data Karyawan</v-list-item-title
-          >
+          <v-list-item-title class="itemparent">Employee</v-list-item-title>
+        </v-list-item>
+        <v-list-item color="#25695c" class="fontall">
+          <v-list-item-icon>
+            <v-icon>mdi-cash-multiple </v-icon>
+          </v-list-item-icon>
+
+          <v-list-item-title class="itemparent">Payroll</v-list-item-title>
         </v-list-item>
         <v-list-item color="#25695c" class="fontall">
           <v-list-item-icon>
             <v-icon>mdi-account-search-outline </v-icon>
           </v-list-item-icon>
-
-          <v-list-item-title class="itemparent">Rekruitmenn</v-list-item-title>
+          <v-list-item-title class="itemparent">Recruitment</v-list-item-title>
         </v-list-item>
         <v-list-item color="#25695c" class="fontall">
           <v-list-item-icon>
             <v-icon>mdi-clipboard-clock-outline </v-icon>
           </v-list-item-icon>
-
           <v-list-item-title class="itemparent"
             >Time Attendance</v-list-item-title
           >
@@ -77,7 +81,7 @@
             <v-icon>mdi-file-document-multiple-outline </v-icon>
           </v-list-item-icon>
 
-          <v-list-item-title class="itemparent">Dokumen</v-list-item-title>
+          <v-list-item-title class="itemparent">Utilities</v-list-item-title>
         </v-list-item>
 
         <v-list-group
@@ -133,7 +137,7 @@
         class="pl-1 fontall"
       >
         <v-img
-          max-height="55"
+          max-height="48"
           max-width="220"
           src="/images/hris_header.png"
         ></v-img>
