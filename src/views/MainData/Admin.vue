@@ -46,7 +46,7 @@
               <!-- <v-divider></v-divider> -->
               <v-card-text class="fontall">
                 <v-form ref="form" v-model="valid" lazy-validation>
-                  <v-container>
+                  <v-container fluid>
                     <v-row>
                       <v-col cols="12" sm="12" md="12" class="pa-1">
                         <v-select

@@ -80,11 +80,11 @@
                               :items="dataadmin"
                               item-value="code"
                               item-text="nama"
+                              dense
                               outlined
                               label="Pilih Salesman"
-                              class="itemparent"
+                              class="fontall"
                               color="#25695c"
-                              dense
                               :rules="[(v) => !!v || 'Field is required']"
                             ></v-select>
                           </v-col>
@@ -422,7 +422,13 @@
                           <v-icon left> mdi-close-circle-outline </v-icon>
                           Cancel
                         </v-btn>
-                        <v-btn dark elevation="1" color="#25695c" @click="save">
+                        <v-btn
+                          dark
+                          :loading="loading"
+                          elevation="1"
+                          color="#25695c"
+                          @click="save"
+                        >
                           <v-icon left>
                             mdi-checkbox-marked-circle-outline
                           </v-icon>
@@ -688,10 +694,6 @@
                       </tbody>
                     </template>
                   </v-simple-table>
-                  <v-divider
-                    style="border-color: black !important"
-                    class="mx-1 mb-2"
-                  ></v-divider>
                 </v-container>
               </v-card-text>
             </v-card>
@@ -1181,6 +1183,7 @@ export default {
       this.dialogDelete = false;
     },
     save() {
+      this.loading = false;
       if (this.defaultItem.nama_customer.length != 0) {
         if (this.defaultItem.code_customer) {
           console.log(this.defaultItem);

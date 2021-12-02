@@ -1,174 +1,293 @@
 <template>
   <v-container class="mt-9 pa-0">
-    <v-row dense>
-      <v-col class="pa-2 mb-3" cols="12" sm="6" md="3">
-        <v-hover v-slot="{ hover }" open-delay="200">
-          <v-card color="#444941" :elevation="hover ? 16 : 2">
-            <v-row>
-              <v-col cols="12" sm="8">
-                <v-list-item three-line>
-                  <v-list-item-content>
-                    <div class="mb-4">
-                      <v-btn
-                        color="#5B6156"
-                        elevation="0"
-                        class="itemparent white--text"
-                      >
-                        {{ data1.Count }}
-                      </v-btn>
-                    </div>
-                    <v-list-item-title class="itemparent white--text">
-                      {{ data1.Judul }}
-                    </v-list-item-title>
-                    <v-list-item-subtitle class="fontall white--text">{{
-                      data1.Deskripsi
-                    }}</v-list-item-subtitle>
-                  </v-list-item-content>
-                </v-list-item>
-              </v-col>
-              <v-col class="mr-6 mt-15">
-                <v-icon x-large color="white"> mdi-account-multiple </v-icon>
-              </v-col>
-            </v-row>
-          </v-card>
-        </v-hover>
-      </v-col>
+    <!-- <v-card class="px-2 mb-4" cols="14" sm="14" md="14">
+      <v-row dense>
+        <v-col class="pa-2 mb-4" cols="12" sm="4" md="3">
+          <v-row>
+            <v-col cols="12" sm="7">
+              <v-list-item three-line>
+                <v-list-item-content>
+                  <div class="mb-4">
+                    <v-btn color="white" elevation="0" class="itemparent">
+                      {{ data1.Count }}
+                    </v-btn>
+                  </div>
+                  <v-list-item-title class="itemparent">
+                    {{ data1.Judul }}
+                  </v-list-item-title>
+                  <v-list-item-subtitle class="itemparent">{{
+                    data1.Deskripsi
+                  }}</v-list-item-subtitle>
+                </v-list-item-content>
+              </v-list-item>
+              <v-avatar size="44" rounded class="elevation-1">
+                <v-icon dark size="30" color="black"
+                  >mdi-account-multiple
+                </v-icon>
+              </v-avatar>
+            </v-col>
+          </v-row>
+        </v-col>
 
-      <v-col class="pa-2 mb-3" cols="12" sm="6" md="3">
-        <v-hover v-slot="{ hover }" open-delay="200">
-          <v-card color="#25695c" :elevation="hover ? 16 : 2">
+        <v-col class="pa-2 mb-3 ml-n14" cols="12" sm="4" md="3">
+          <v-row>
+            <v-col cols="12" sm="8">
+              <v-list-item three-line>
+                <v-list-item-content>
+                  <div class="mb-4">
+                    <v-btn color="white" elevation="0" class="itemparent">
+                      {{ data2.Count }}
+                    </v-btn>
+                  </div>
+                  <v-list-item-title class="itemparent">
+                    {{ data2.Judul }}
+                  </v-list-item-title>
+                  <v-list-item-subtitle class="itemparent">{{
+                    data2.Deskripsi
+                  }}</v-list-item-subtitle>
+                </v-list-item-content>
+              </v-list-item>
+            </v-col>
+            <v-col class="mr-8 mt-3">
+              <v-icon large color="black">mdi-account-remove</v-icon>
+            </v-col>
+          </v-row>
+        </v-col>
+
+        <v-col class="pa-2 mb-3 ml-n14" cols="12" sm="4" md="3">
+          <v-row>
+            <v-col cols="12" sm="8">
+              <v-list-item three-line>
+                <v-list-item-content>
+                  <div class="mb-4">
+                    <v-btn color="white" elevation="0" class="itemparent">
+                      {{ data4.Count }}
+                    </v-btn>
+                  </div>
+                  <v-list-item-title class="itemparent">
+                    {{ data4.Judul }}
+                  </v-list-item-title>
+                  <v-list-item-subtitle class="itemparent">{{
+                    data4.Deskripsi
+                  }}</v-list-item-subtitle>
+                </v-list-item-content>
+              </v-list-item>
+            </v-col>
+            <v-col class="mr-8 mt-3">
+              <v-icon large color="black">mdi-account-clock </v-icon>
+            </v-col>
+          </v-row>
+        </v-col>
+
+        <v-col class="pa-2 mb-3 ml-n14" cols="12" sm="4" md="3">
+          <v-row>
+            <v-col cols="12" sm="8">
+              <v-list-item three-line>
+                <v-list-item-content>
+                  <div class="mb-4">
+                    <v-btn color="white" elevation="0" class="itemparent">
+                      {{ data3.Count }}
+                    </v-btn>
+                  </div>
+                  <v-list-item-title class="itemparent">
+                    {{ data3.Judul }}
+                  </v-list-item-title>
+                  <v-list-item-subtitle class="itemparent">{{
+                    data3.Deskripsi
+                  }}</v-list-item-subtitle>
+                </v-list-item-content>
+              </v-list-item>
+            </v-col>
+            <v-col class="mr-8 mt-3">
+              <v-icon large color="black">mdi-account-check</v-icon>
+            </v-col>
+          </v-row>
+        </v-col>
+      </v-row>
+    </v-card> -->
+
+    <v-row>
+      <v-col cols="12" md="12">
+        <!-- <v-card>
+          <v-alert show dismissible text color="#444941" class="fontall">
+            Login Berhasil! Selamat datang di <strong>HRIS</strong>
+          </v-alert>
+        </v-card> -->
+        <div>
+          <v-alert
+            v-model="alert"
+            type="success"
+            border="left"
+            close-text="Close Alert"
+            color="#444941"
+            dark
+            class="fontall"
+            dismissible
+          >
+            Login Berhasil! Selamat datang di <strong>HRIS</strong>
+          </v-alert>
+        </div>
+
+        <v-card>
+          <v-card-text>
             <v-row>
-              <v-col cols="12" sm="8">
-                <v-list-item three-line>
-                  <v-list-item-content>
-                    <div class="mb-4">
-                      <v-btn
-                        color="#357C6F"
-                        elevation="0"
-                        class="itemparent white--text"
-                      >
-                        {{ data2.Count }}
-                      </v-btn>
-                    </div>
-                    <v-list-item-title class="itemparent white--text">
-                      {{ data2.Judul }}
-                    </v-list-item-title>
-                    <v-list-item-subtitle class="fontall white--text">{{
-                      data2.Deskripsi
-                    }}</v-list-item-subtitle>
-                  </v-list-item-content>
-                </v-list-item>
+              <v-col cols="6" md="3" class="d-flex align-end">
+                <v-avatar size="50" rounded class="elevation-1">
+                  <v-icon dark size="40" color="#444941"
+                    >mdi-account-multiple
+                  </v-icon>
+                </v-avatar>
+                <div class="ms-3">
+                  <p class="itemparent mb-0">
+                    {{ data1.Judul }}
+                  </p>
+                  <h3 class="fontall">
+                    {{ data1.Count }}
+                  </h3>
+                </div>
               </v-col>
-              <v-col class="mr-6 mt-15">
-                <v-icon x-large color="white">mdi-account-remove</v-icon>
+
+              <v-col cols="6" md="3" class="d-flex align-end">
+                <v-avatar size="50" rounded class="elevation-1">
+                  <v-icon size="40" color="#444941">mdi-account-remove</v-icon>
+                </v-avatar>
+                <div class="ms-3">
+                  <p class="itemparent mb-0">
+                    {{ data2.Judul }}
+                  </p>
+                  <h3 class="fontall">
+                    {{ data2.Count }}
+                  </h3>
+                </div>
+              </v-col>
+
+              <!-- <v-col cols="6" md="2" class="d-flex align-end">
+                <v-avatar size="44" rounded class="elevation-1">
+                  <v-icon size="30" color="#444941">mdi-account-clock</v-icon>
+                </v-avatar>
+                <div class="ms-3">
+                  <p class="fontall text-xs mb-0">
+                    {{ data3.Judul }}
+                  </p>
+                  <h3 class="fontall">
+                    {{ data3.Count }}
+                  </h3>
+                </div>
+              </v-col> -->
+
+              <v-col cols="6" md="3" class="d-flex align-end">
+                <v-avatar size="50" rounded class="elevation-1">
+                  <v-icon size="40" color="#444941">mdi-account-check</v-icon>
+                </v-avatar>
+                <div class="ms-3">
+                  <p class="itemparent mb-0">
+                    {{ data4.Judul }}
+                  </p>
+                  <h3 class="fontall">
+                    {{ data4.Count }}
+                  </h3>
+                </div>
+              </v-col>
+              <v-col cols="3">
+                <v-row align="center" justify="center" class="mb-0">
+                  <v-img
+                    max-width="150"
+                    src="/images/people.png"
+                    style="margin-top: 2px"
+                  ></v-img>
+                </v-row>
               </v-col>
             </v-row>
-          </v-card>
-        </v-hover>
-      </v-col>
-      <v-col class="pa-2 mb-3" cols="12" sm="6" md="3">
-        <v-hover v-slot="{ hover }" open-delay="200">
-          <v-card color="#49AB83" :elevation="hover ? 16 : 2">
-            <v-row>
-              <v-col cols="12" sm="8">
-                <v-list-item three-line>
-                  <v-list-item-content>
-                    <div class="mb-4">
-                      <v-btn
-                        color="#54B68E"
-                        elevation="0"
-                        class="itemparent white--text"
-                      >
-                        {{ data3.Count }}
-                      </v-btn>
-                    </div>
-                    <v-list-item-title class="itemparent white--text">
-                      {{ data3.Judul }}
-                    </v-list-item-title>
-                    <v-list-item-subtitle class="fontall white--text">{{
-                      data3.Deskripsi
-                    }}</v-list-item-subtitle>
-                  </v-list-item-content>
-                </v-list-item>
-              </v-col>
-              <v-col class="mr-6 mt-15">
-                <v-icon x-large color="white">mdi-account-check</v-icon>
-              </v-col>
-            </v-row>
-          </v-card>
-        </v-hover>
-      </v-col>
-      <v-col class="pa-2 mb-3" cols="12" sm="6" md="3">
-        <v-hover v-slot="{ hover }" open-delay="200">
-          <v-card color="#99A799" :elevation="hover ? 16 : 2">
-            <v-row>
-              <v-col cols="12" sm="8">
-                <v-list-item three-line>
-                  <v-list-item-content>
-                    <div class="mb-4">
-                      <v-btn
-                        color="#ADC2A9"
-                        elevation="0"
-                        class="itemparent white--text"
-                      >
-                        {{ data4.Count }}
-                      </v-btn>
-                    </div>
-                    <v-list-item-title class="itemparent white--text">
-                      {{ data4.Judul }}
-                    </v-list-item-title>
-                    <v-list-item-subtitle class="fontall white--text">{{
-                      data4.Deskripsi
-                    }}</v-list-item-subtitle>
-                  </v-list-item-content>
-                </v-list-item>
-              </v-col>
-              <v-col class="mr-6 mt-15">
-                <v-icon x-large color="white">mdi-account-clock </v-icon>
-              </v-col>
-            </v-row>
-          </v-card>
-        </v-hover>
+          </v-card-text>
+        </v-card>
       </v-col>
     </v-row>
 
-    <v-row dense class="mt-2">
-      <v-col class="px-2 mt-1" cols="12" sm="8" md="8">
-        <v-card elevation="5" class="mt-4 mx-auto">
-          <v-sheet
-            class="v-sheet--offset mx-auto mt-7"
-            color="#5F7A61"
-            elevation="12"
-            max-width="calc(100% - 30px)"
+    <v-row dense class="mt-5">
+      <v-col class="pa-2 mb-3" cols="12" sm="4" md="4">
+        <v-card class="fontall pa-md-4" height="355px" elevation="5">
+          <header class="fontall pa-2 mb-3" style="text-align: center">
+            Pending Task
+          </header>
+          <!-- <v-simple-table>
+            <template v-slot:default>
+              <thead>
+                <tr>
+                  <th class="text-left">Name</th>
+                  <th class="text-left">Email</th>
+                  <th class="text-left">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="item in profils" :key="item.name">
+                  <td>{{ item.name }}</td>
+                  <td>{{ item.email }}</td>
+                  <td>
+                    <b-badge
+                      :variant="
+                        item.status === 'Pending'
+                          ? 'success'
+                          : item.status === 'Declined'
+                          ? 'danger'
+                          : 'info'
+                      "
+                      pill
+                    >
+                      {{ item.status }}
+                    </b-badge>
+                  </td>
+                </tr>
+              </tbody>
+            </template>
+          </v-simple-table> -->
+          <v-data-table
+            :headers="headers"
+            :items="profils"
+            hide-default-footer
+            disable-sort
           >
-            <v-sparkline
-              :labels="labelsSparkline"
-              :value="valueSparkline"
-              :gradient="gradient"
-              :gradient-direction="gradientDirection"
-              max-height="80px"
-              min-height="70px"
-              line-width="2"
-              padding="16"
-              color="white"
-              class="fontall"
-            ></v-sparkline>
-          </v-sheet>
+            <!-- <template v-slot:item.status_name="{ item }">
+              <v-chip label :color="getColorStatus(item.status_name)" dark>
+                {{ item.status_name }}
+              </v-chip>
+            </template> -->
+          </v-data-table>
+        </v-card>
+      </v-col>
+      <v-col class="pa-2 mb-3" cols="12" sm="4" md="4">
+        <v-card class="fontall pa-md-4" height="355px" elevation="5">
+          <header class="fontall pa-2 mb-3" style="text-align: center">
+            Employment Status
+          </header>
 
-          <v-card-text class="pt-0">
-            <div class="text-h6 font-weight-light mb-2">
-              <v-btn block text small class="fontall grey--text"
-                >GRAFIK PRODUKTIFITAS</v-btn
-              >
-            </div>
-
-            <div class="fontall grey--text">Last Campaign Performance</div>
-            <v-divider class="my-2"></v-divider>
-            <v-icon class="mr-2" small> mdi-clock </v-icon>
-            <span class="fontall grey--text font-weight-light"
-              >Grafik Hasil Pengelolaan 1 Tahun
-            </span>
-          </v-card-text>
+          <!-- <h5>Permanent</h5>
+          <v-progress-linear value="12" height="30" color="#444941">
+            <template v-slot:default="{ value }">
+              <strong>{{ Math.ceil(value) }}</strong>
+            </template></v-progress-linear
+          >
+          <br />
+          <h5>Contract</h5>
+          <v-progress-linear value="60" height="30" color="#9CACA3">
+            <template v-slot:default="{ value }">
+              <strong>{{ Math.ceil(value) }}</strong>
+            </template></v-progress-linear
+          >
+          <br />
+          <h5>Probation</h5>
+          <v-progress-linear value="44" height="30" color="#E4CA43">
+            <template v-slot:default="{ value }">
+              <strong>{{ Math.ceil(value) }}</strong>
+            </template></v-progress-linear
+          > -->
+          <div id="chart" class="fontall">
+            <apexchart
+              type="bar"
+              height="250"
+              :options="chartOptionsBar"
+              :series="seriesBar"
+            ></apexchart>
+          </div>
         </v-card>
       </v-col>
       <v-col class="pa-2 mb-3" cols="12" sm="4" md="4">
@@ -180,8 +299,8 @@
             <apexchart
               width="350"
               type="donut"
-              :options="chartOptions"
-              :series="series"
+              :options="chartOptionsDonut"
+              :series="seriesDonut"
               :color="colors"
               class="fontall"
             ></apexchart>
@@ -194,7 +313,9 @@
 
 <script>
 // import axios from "axios";
+
 import VueApexCharts from "vue-apexcharts";
+
 const gradients = [
   ["#222"],
   ["#42b3f4"],
@@ -206,12 +327,13 @@ const gradients = [
 
 export default {
   name: "Dashboard",
+
   components: {
     apexchart: VueApexCharts,
   },
   data: () => ({
-    series: [100, 55],
-    chartOptions: {
+    seriesDonut: [100, 55],
+    chartOptionsDonut: {
       chart: {
         type: "donut",
       },
@@ -223,13 +345,106 @@ export default {
       ],
       legend: {
         position: "bottom",
+        fontWeight: "bold",
       },
       labels: ["Laki-laki", "Perempuan"],
       colors: ["#444941", "#99A799"],
     },
+    seriesBar: [
+      {
+        name: "Permanent",
+        data: [100],
+      },
+      {
+        name: "Contract",
+        data: [212],
+      },
+      {
+        name: "Probation",
+        data: [333],
+      },
+    ],
+    chartOptionsBar: {
+      chart: {
+        type: "bar",
+        height: 200,
+        stacked: true,
+        stackType: "100%",
+      },
+      plotOptions: {
+        bar: {
+          horizontal: true,
+        },
+      },
+
+      stroke: {
+        width: 1,
+        colors: ["#444941"],
+      },
+      xaxis: {
+        categories: ["Status"],
+      },
+
+      fill: {
+        opacity: 1,
+      },
+      colors: ["#444941", "#99A799", "#25695C"],
+      legend: {
+        position: "bottom",
+        horizontalAlign: "left",
+        offsetX: 40,
+        fontWeight: "bold",
+      },
+    },
+
     drawer: null,
     BaseUrlGet: "",
     authtoken: "",
+
+    headers: [
+      {
+        text: "Nama",
+        align: "start",
+        sortable: false,
+        value: "name",
+      },
+      { text: "Email", value: "email" },
+
+      { text: "Status", value: "status_name" },
+    ],
+    profils: [
+      {
+        name: "Admin1",
+        email: "admin1@mail.com",
+        status_name: "Approve",
+        status: "1",
+      },
+      {
+        name: "Admin2",
+        email: "admin2@mail.com",
+        status_name: "Pending",
+        status: "1",
+      },
+      {
+        name: "Cust1",
+        email: "cust1@mail.com",
+        status_name: "Decline",
+        status: "1",
+      },
+      {
+        name: "Cust2",
+        email: "cust2@mail.com",
+        status_name: "Pending",
+        status: "1",
+      },
+    ],
+    defaultItem: {
+      code: "",
+      nama: "",
+      email: "",
+      status: "",
+      status_name: "",
+    },
 
     data1: {
       Judul: "Jumlah Karyawan",
@@ -320,5 +535,12 @@ export default {
   handleSectionClick(section, event) {
     console.log(`${section.label} clicked.`);
   },
+  getColorStatus(status_name) {
+    if (status_name == "1") return "green";
+    else if (status_name == "2") return "orange";
+    else if (stastatus_nametus == "3") return "red";
+    else return "blue";
+  },
 };
 </script>
+

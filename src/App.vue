@@ -50,20 +50,20 @@
         </v-list-item>
         <v-list-item color="#25695c" class="fontall">
           <v-list-item-icon>
-            <v-icon>mdi-cash-multiple </v-icon>
+            <v-icon>mdi-cash-multiple</v-icon>
           </v-list-item-icon>
 
           <v-list-item-title class="itemparent">Payroll</v-list-item-title>
         </v-list-item>
         <v-list-item color="#25695c" class="fontall">
           <v-list-item-icon>
-            <v-icon>mdi-account-search-outline </v-icon>
+            <v-icon>mdi-account-search-outline</v-icon>
           </v-list-item-icon>
           <v-list-item-title class="itemparent">Recruitment</v-list-item-title>
         </v-list-item>
         <v-list-item color="#25695c" class="fontall">
           <v-list-item-icon>
-            <v-icon>mdi-clipboard-clock-outline </v-icon>
+            <v-icon>mdi-clipboard-clock-outline</v-icon>
           </v-list-item-icon>
           <v-list-item-title class="itemparent"
             >Time Attendance</v-list-item-title
@@ -71,14 +71,14 @@
         </v-list-item>
         <v-list-item color="#25695c" class="fontall">
           <v-list-item-icon>
-            <v-icon>mdi-book-play-outline </v-icon>
+            <v-icon>mdi-book-play-outline</v-icon>
           </v-list-item-icon>
 
           <v-list-item-title class="itemparent">Training</v-list-item-title>
         </v-list-item>
         <v-list-item color="#25695c" class="fontall">
           <v-list-item-icon>
-            <v-icon>mdi-file-document-multiple-outline </v-icon>
+            <v-icon>mdi-file-document-multiple-outline</v-icon>
           </v-list-item-icon>
 
           <v-list-item-title class="itemparent">Utilities</v-list-item-title>
