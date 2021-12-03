@@ -12,8 +12,9 @@
       <v-card
         max-width="325"
         class="mx-auto px-5 pb-2"
-        style="margin-top: 50px"
+        style="margin-top: 150px"
         elevation="7"
+        color="#91b3b1"
       >
         <v-row align="center" justify="center" class="mb-1">
           <v-img
@@ -63,7 +64,7 @@
             large
             width="200"
             @click="login()"
-            color="#3e9025"
+            color="#6a706f"
             class="mx-auto"
             :disabled="disablevalue"
             ><v-progress-circular
@@ -71,7 +72,7 @@
               :size="25"
               :width="5"
               indeterminate
-              color="#25695c"
+              color="#6a706f"
             >
             </v-progress-circular>
             <h2 v-if="load == false" class="fontall">Login</h2>
