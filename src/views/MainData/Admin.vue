@@ -149,7 +149,7 @@
                 <v-btn dark color="red" @click="close">
                   <v-icon left> mdi-close-circle-outline </v-icon> Cancel
                 </v-btn>
-                <v-btn dark color="#25695c" @click="save">
+                <v-btn dark :loading="loading" color="#25695c" @click="save">
                   <v-icon left> mdi-checkbox-marked-circle-outline </v-icon>
                   Save
                 </v-btn>
@@ -253,7 +253,7 @@ export default {
         return pattern.test(value) || "Invalid e-mail.";
       },
     },
-
+    loading: false,
     formTitle: "Add Item",
     value: "add",
     dialog: false,
@@ -565,6 +565,7 @@ export default {
     },
 
     save() {
+      this.loading = true;
       this.$refs.form.validate();
 
       if (this.$refs.form.validate() == true) {
@@ -594,10 +595,10 @@ export default {
     },
 
     getColorStatus(role) {
-      if (role == "1") return "green";
-      else if (role == "2") return "orange";
-      else if (role == "3") return "red";
-      else return "blue";
+      if (role == "1") return "#25695C";
+      else if (role == "2") return "#BF9168";
+      else if (role == "3") return "#D42F2F";
+      else return "#9CACA3";
     },
   },
 };

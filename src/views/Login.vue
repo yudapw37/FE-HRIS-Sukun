@@ -67,7 +67,8 @@
             color="#6a706f"
             class="mx-auto"
             :disabled="disablevalue"
-            ><v-progress-circular
+          >
+            <v-progress-circular
               v-if="load == true"
               :size="25"
               :width="5"

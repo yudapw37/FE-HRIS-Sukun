@@ -105,7 +105,7 @@
                 <v-btn dark color="red" @click="close">
                   <v-icon left> mdi-close-circle-outline </v-icon> Cancel
                 </v-btn>
-                <v-btn dark color="#25695c" @click="save">
+                <v-btn :loading="loading" dark color="#25695c" @click="save">
                   <v-icon left> mdi-checkbox-marked-circle-outline </v-icon>
                   Save
                 </v-btn>
@@ -150,7 +150,7 @@ export default {
         href: "breadcrumbs_link_1",
       },
     ],
-
+    loading: false,
     formTitle: "Add Item",
     value: "add",
     dialog: false,
@@ -281,13 +281,13 @@ export default {
         if (response.data.data.result == "success") {
           this.dialog = false;
           this.snackbar = true;
-          this.colorsnackbar = "green";
+          this.colorsnackbar = "#25695C";
           this.textsnackbar = "Sukses mengubah data";
           this.initialize();
         } else {
           this.dialog = true;
           this.snackbar = true;
-          this.colorsnackbar = "red";
+          this.colorsnackbar = "#D42F2F";
           this.textsnackbar = "Gagal mengubah data";
         }
       } catch (error) {
@@ -295,14 +295,14 @@ export default {
         if (error.response.status == 401) {
           this.dialog = true;
           this.snackbar = true;
-          this.colorsnackbar = "red";
+          this.colorsnackbar = "#D42F2F";
           this.textsnackbar = "Gagal mengubah data";
           localStorage.removeItem("token");
           this.$router.push("/");
         } else {
           this.dialog = true;
           this.snackbar = true;
-          this.colorsnackbar = "red";
+          this.colorsnackbar = "#D42F2F";
           this.textsnackbar = "Gagal mengubah data";
         }
       }
@@ -352,11 +352,11 @@ export default {
           this.defaultItem.MenuTable.push(itemsmenuset);
           // console.log(this.defaultItem.MenuTable);
           this.snackbar = true;
-          this.colorsnackbar = "green";
+          this.colorsnackbar = "#25695C";
           this.textsnackbar = "Sukses Tambah Menu Access";
         } else {
           this.snackbar = true;
-          this.colorsnackbar = "red";
+          this.colorsnackbar = "#D42F2F";
           this.textsnackbar = "Menu Sudah Tersedia";
         }
         // this.menudropdown.id = '';
@@ -372,6 +372,7 @@ export default {
     },
 
     save() {
+      this.loading = true;
       if (this.defaultItem.code.length != 0) {
         var listmenupost = "";
         var listmenutemp = "";
@@ -398,17 +399,17 @@ export default {
         }
       } else {
         this.snackbar = true;
-        this.colorsnackbar = "red";
+        this.colorsnackbar = "#D42F2F";
         this.textsnackbar =
           "Gagal Simpan, Semua kolom tidak boleh ada yang kosong";
       }
     },
 
     getColorStatus(role) {
-      if (role == "1") return "green";
-      else if (role == "2") return "orange";
-      else if (role == "3") return "red";
-      else return "blue";
+      if (role == "1") return "#25695C";
+      else if (role == "2") return "#BF9168";
+      else if (role == "3") return "#D42F2F";
+      else return "#9CACA3";
     },
   },
 };

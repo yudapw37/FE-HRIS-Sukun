@@ -155,7 +155,7 @@
                         <v-btn
                           dark
                           class="mr-1"
-                          color="red"
+                          color="#D42F2F"
                           elevation="1"
                           @click="close"
                         >
@@ -242,7 +242,7 @@
                         <v-btn
                           dark
                           class="mr-1"
-                          color="red"
+                          color="#D42F2F"
                           elevation="1"
                           @click="close"
                         >
@@ -335,7 +335,7 @@
                         <v-btn
                           dark
                           class="mr-1"
-                          color="red"
+                          color="#D42F2F"
                           elevation="1"
                           @click="close"
                         >
@@ -415,7 +415,7 @@
                         <v-btn
                           dark
                           class="mr-1"
-                          color="red"
+                          color="#D42F2F"
                           elevation="1"
                           @click="close"
                         >
@@ -459,7 +459,7 @@
               >
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn dark color="red" elevation="1" @click="closeDelete">
+                <v-btn dark color="#D42F2F" elevation="1" @click="closeDelete">
                   <v-icon left> mdi-close-circle-outline </v-icon> Cancel</v-btn
                 >
                 <v-btn
@@ -742,7 +742,7 @@ export default {
         href: "breadcrumbs_link_1",
       },
     ],
-
+    loading: false,
     formTitle: "Add Item",
     value: "add",
     dialog: false,
@@ -985,7 +985,7 @@ export default {
         if (response.data.data.result == "success") {
           this.dialogDelete = false;
           this.snackbar = true;
-          this.colorsnackbar = "green";
+          this.colorsnackbar = "#25695C";
           this.textsnackbar = "Sukses hapus data";
           this.initialize();
         } else {
@@ -1039,13 +1039,13 @@ export default {
         if (response.data.data.result == "success") {
           this.dialog = false;
           this.snackbar = true;
-          this.colorsnackbar = "green";
+          this.colorsnackbar = "#25695C";
           this.textsnackbar = "Sukses tambah data";
           this.initialize();
         } else {
           //   this.dialog = false;
           this.snackbar = true;
-          this.colorsnackbar = "red";
+          this.colorsnackbar = "#D42F2F";
           this.textsnackbar = "Gagal ubah data";
         }
       } catch (error) {
@@ -1055,7 +1055,7 @@ export default {
           this.$router.push("/");
         } else {
           this.snackbar = true;
-          this.colorsnackbar = "red";
+          this.colorsnackbar = "#D42F2F";
           this.textsnackbar = "Gagal ubah data";
         }
       }
@@ -1101,13 +1101,13 @@ export default {
         if (response.data.data.result == "success") {
           this.dialog = false;
           this.snackbar = true;
-          this.colorsnackbar = "green";
+          this.colorsnackbar = "#25695C";
           this.textsnackbar = "Sukses ubah data";
           this.initialize();
         } else {
           //   this.dialog = false;
           this.snackbar = true;
-          this.colorsnackbar = "red";
+          this.colorsnackbar = "#D42F2F";
           this.textsnackbar = "Gagal ubah data";
         }
       } catch (error) {
@@ -1118,7 +1118,7 @@ export default {
           this.$router.push("/");
         } else {
           this.snackbar = true;
-          this.colorsnackbar = "red";
+          this.colorsnackbar = "#D42F2F";
           this.textsnackbar = "Gagal ubah data";
         }
       }
@@ -1183,7 +1183,7 @@ export default {
       this.dialogDelete = false;
     },
     save() {
-      this.loading = false;
+      this.loading = true;
       if (this.defaultItem.nama_customer.length != 0) {
         if (this.defaultItem.code_customer) {
           console.log(this.defaultItem);
@@ -1198,7 +1198,7 @@ export default {
         // console.log(this.defaultItem.kabROCombobox.text);
       } else {
         this.snackbar = true;
-        this.colorsnackbar = "red";
+        this.colorsnackbar = "#D42F2F";
         this.textsnackbar = "Gagal Menambah, Kolom tidak boleh ada yang kosong";
       }
     },
