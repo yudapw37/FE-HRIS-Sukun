@@ -31,10 +31,15 @@
           <v-btn dark class="mb-2" @click="showAddModal()" color="#25695c">
             <v-icon small>mdi-plus</v-icon> Add Item
           </v-btn>
-          <v-dialog v-model="dialog" max-width="700px">
+          <!-- Prevent dialog from closing -->
+          <v-dialog persistent v-model="dialog" max-width="700px">
             <v-card>
               <v-card-title class="headermodalstyle" style="margin-bottom: 2px">
                 <span>{{ formTitle }}</span>
+                <v-spacer></v-spacer>
+                <v-btn icon dark large class="right" @click="close()">
+                  <v-icon>mdi-close</v-icon>
+                </v-btn>
               </v-card-title>
               <v-card-text class="pa-0 fontall">
                 <v-stepper v-model="e1">
@@ -475,10 +480,19 @@
               </v-card-actions>
             </v-card>
           </v-dialog>
-          <v-dialog v-model="dialogDetail" max-width="800px" class="pa-1">
+          <v-dialog
+            persistent
+            v-model="dialogDetail"
+            max-width="800px"
+            class="pa-1"
+          >
             <v-card>
               <v-card-title class="mb-0 headermodalstyle">
                 <span>Detail Customer</span>
+                <v-spacer></v-spacer>
+                <v-btn icon dark large @click="dialogDetail = false">
+                  <v-icon>mdi-close</v-icon>
+                </v-btn>
               </v-card-title>
 
               <v-card-text class="fontall pa-1">
@@ -1046,7 +1060,7 @@ export default {
           //   this.dialog = false;
           this.snackbar = true;
           this.colorsnackbar = "#D42F2F";
-          this.textsnackbar = "Gagal ubah data";
+          this.textsnackbar = "Gagal merubah data";
         }
       } catch (error) {
         console.error(error.response);
@@ -1056,7 +1070,7 @@ export default {
         } else {
           this.snackbar = true;
           this.colorsnackbar = "#D42F2F";
-          this.textsnackbar = "Gagal ubah data";
+          this.textsnackbar = "Gagal merubah data";
         }
       }
     },
@@ -1102,13 +1116,13 @@ export default {
           this.dialog = false;
           this.snackbar = true;
           this.colorsnackbar = "#25695C";
-          this.textsnackbar = "Sukses ubah data";
+          this.textsnackbar = "Sukses merubah data";
           this.initialize();
         } else {
           //   this.dialog = false;
           this.snackbar = true;
           this.colorsnackbar = "#D42F2F";
-          this.textsnackbar = "Gagal ubah data";
+          this.textsnackbar = "Gagal merubah data";
         }
       } catch (error) {
         console.error(error.response);
@@ -1119,7 +1133,7 @@ export default {
         } else {
           this.snackbar = true;
           this.colorsnackbar = "#D42F2F";
-          this.textsnackbar = "Gagal ubah data";
+          this.textsnackbar = "Gagal merubah data";
         }
       }
     },

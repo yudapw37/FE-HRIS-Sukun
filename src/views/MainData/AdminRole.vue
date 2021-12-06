@@ -37,10 +37,14 @@
             <v-icon small>mdi-plus</v-icon> Add Item
           </v-btn> -->
           <!-- Modal Add Edit -->
-          <v-dialog v-model="dialog" max-width="600px">
+          <v-dialog persistent v-model="dialog" max-width="600px">
             <v-card>
               <v-card-title class="headermodalstyle">
                 Edit Menu Access
+                <v-spacer></v-spacer>
+                <v-btn icon dark large class="right" @click="close()">
+                  <v-icon>mdi-close</v-icon>
+                </v-btn>
               </v-card-title>
               <!-- <v-divider></v-divider> -->
               <v-card-text class="fontall">
