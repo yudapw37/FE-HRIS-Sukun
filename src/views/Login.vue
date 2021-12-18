@@ -10,18 +10,18 @@
   >
     <v-form ref="form" v-model="valid" lazy-validation>
       <v-card
-        max-width="325"
-        class="mx-auto px-5 pb-2"
-        style="margin-top: 150px"
+        max-width="350"
+        class="mx-auto px-6 pb-2"
+        style="margin-top: 315px"
         elevation="7"
         color="#91b3b1"
       >
-        <v-row align="center" justify="center" class="mb-1">
-          <v-img
+        <v-row align="center" justify="center" class="pt-8 pb-0 px-3">
+          <!-- <v-img
             max-width="250"
             src="/images/Logo_Login.png"
             style="margin-top: 2px"
-          ></v-img>
+          ></v-img> -->
         </v-row>
         <!-- <v-card-title> </v-card-title> -->
         <v-card-text class="pt-1 pb-0 px-3">
@@ -64,7 +64,7 @@
             large
             width="200"
             @click="login()"
-            color="#6a706f"
+            color="#D42F2F"
             class="mx-auto"
             :disabled="disablevalue"
           >
