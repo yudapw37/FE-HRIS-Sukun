@@ -43,7 +43,7 @@
                 Edit Menu Access
                 <v-spacer></v-spacer>
                 <v-btn icon dark large class="right" @click="close()">
-                  <v-icon>mdi-close</v-icon>
+                  <v-icon>mdi-close-box-outline</v-icon>
                 </v-btn>
               </v-card-title>
               <!-- <v-divider></v-divider> -->

@@ -64,7 +64,7 @@
             large
             width="200"
             @click="login()"
-            color="#D42F2F"
+            color="#25695C"
             class="mx-auto"
             :disabled="disablevalue"
           >

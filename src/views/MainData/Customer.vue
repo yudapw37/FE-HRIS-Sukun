@@ -38,7 +38,7 @@
                 <span>{{ formTitle }}</span>
                 <v-spacer></v-spacer>
                 <v-btn icon dark large class="right" @click="close()">
-                  <v-icon>mdi-close</v-icon>
+                  <v-icon>mdi-close-box-outline</v-icon>
                 </v-btn>
               </v-card-title>
               <v-card-text class="pa-0 fontall">
@@ -491,7 +491,7 @@
                 <span>Detail Customer</span>
                 <v-spacer></v-spacer>
                 <v-btn icon dark large @click="dialogDetail = false">
-                  <v-icon>mdi-close</v-icon>
+                  <v-icon>mdi-close-box-outline</v-icon>
                 </v-btn>
               </v-card-title>
 
