@@ -1,118 +1,7 @@
 <template>
   <v-container class="mt-9 pa-0">
-    <!-- <v-card class="px-2 mb-4" cols="14" sm="14" md="14">
-      <v-row dense>
-        <v-col class="pa-2 mb-4" cols="12" sm="4" md="3">
-          <v-row>
-            <v-col cols="12" sm="7">
-              <v-list-item three-line>
-                <v-list-item-content>
-                  <div class="mb-4">
-                    <v-btn color="white" elevation="0" class="itemparent">
-                      {{ data1.Count }}
-                    </v-btn>
-                  </div>
-                  <v-list-item-title class="itemparent">
-                    {{ data1.Judul }}
-                  </v-list-item-title>
-                  <v-list-item-subtitle class="itemparent">{{
-                    data1.Deskripsi
-                  }}</v-list-item-subtitle>
-                </v-list-item-content>
-              </v-list-item>
-              <v-avatar size="44" rounded class="elevation-1">
-                <v-icon dark size="30" color="black"
-                  >mdi-account-multiple
-                </v-icon>
-              </v-avatar>
-            </v-col>
-          </v-row>
-        </v-col>
-
-        <v-col class="pa-2 mb-3 ml-n14" cols="12" sm="4" md="3">
-          <v-row>
-            <v-col cols="12" sm="8">
-              <v-list-item three-line>
-                <v-list-item-content>
-                  <div class="mb-4">
-                    <v-btn color="white" elevation="0" class="itemparent">
-                      {{ data2.Count }}
-                    </v-btn>
-                  </div>
-                  <v-list-item-title class="itemparent">
-                    {{ data2.Judul }}
-                  </v-list-item-title>
-                  <v-list-item-subtitle class="itemparent">{{
-                    data2.Deskripsi
-                  }}</v-list-item-subtitle>
-                </v-list-item-content>
-              </v-list-item>
-            </v-col>
-            <v-col class="mr-8 mt-3">
-              <v-icon large color="black">mdi-account-remove</v-icon>
-            </v-col>
-          </v-row>
-        </v-col>
-
-        <v-col class="pa-2 mb-3 ml-n14" cols="12" sm="4" md="3">
-          <v-row>
-            <v-col cols="12" sm="8">
-              <v-list-item three-line>
-                <v-list-item-content>
-                  <div class="mb-4">
-                    <v-btn color="white" elevation="0" class="itemparent">
-                      {{ data4.Count }}
-                    </v-btn>
-                  </div>
-                  <v-list-item-title class="itemparent">
-                    {{ data4.Judul }}
-                  </v-list-item-title>
-                  <v-list-item-subtitle class="itemparent">{{
-                    data4.Deskripsi
-                  }}</v-list-item-subtitle>
-                </v-list-item-content>
-              </v-list-item>
-            </v-col>
-            <v-col class="mr-8 mt-3">
-              <v-icon large color="black">mdi-account-clock </v-icon>
-            </v-col>
-          </v-row>
-        </v-col>
-
-        <v-col class="pa-2 mb-3 ml-n14" cols="12" sm="4" md="3">
-          <v-row>
-            <v-col cols="12" sm="8">
-              <v-list-item three-line>
-                <v-list-item-content>
-                  <div class="mb-4">
-                    <v-btn color="white" elevation="0" class="itemparent">
-                      {{ data3.Count }}
-                    </v-btn>
-                  </div>
-                  <v-list-item-title class="itemparent">
-                    {{ data3.Judul }}
-                  </v-list-item-title>
-                  <v-list-item-subtitle class="itemparent">{{
-                    data3.Deskripsi
-                  }}</v-list-item-subtitle>
-                </v-list-item-content>
-              </v-list-item>
-            </v-col>
-            <v-col class="mr-8 mt-3">
-              <v-icon large color="black">mdi-account-check</v-icon>
-            </v-col>
-          </v-row>
-        </v-col>
-      </v-row>
-    </v-card> -->
-
     <v-row>
       <v-col cols="12" md="12">
-        <!-- <v-card>
-          <v-alert show dismissible text color="#444941" class="fontall">
-            Login Berhasil! Selamat datang di <strong>HRIS</strong>
-          </v-alert>
-        </v-card> -->
         <div>
           <v-alert
             v-model="alert"
@@ -129,6 +18,23 @@
         </div>
 
         <v-card>
+          <v-card-title class="fontall" v-if="isMorning()">
+            Good Morning, {{ namaAdmin }}</v-card-title
+          >
+          <v-card-title class="fontall" v-else>
+            Good Afternoon, {{ namaAdmin }}</v-card-title
+          >
+          <v-card-subtitle class="fontall">
+            it's
+            {{
+              new Date().toLocaleDateString(undefined, {
+                weekday: "long",
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })
+            }}
+          </v-card-subtitle>
           <v-card-text>
             <v-row>
               <v-col cols="6" md="3" class="d-flex align-end">
@@ -160,20 +66,6 @@
                   </h3>
                 </div>
               </v-col>
-
-              <!-- <v-col cols="6" md="2" class="d-flex align-end">
-                <v-avatar size="44" rounded class="elevation-1">
-                  <v-icon size="30" color="#444941">mdi-account-clock</v-icon>
-                </v-avatar>
-                <div class="ms-3">
-                  <p class="fontall text-xs mb-0">
-                    {{ data3.Judul }}
-                  </p>
-                  <h3 class="fontall">
-                    {{ data3.Count }}
-                  </h3>
-                </div>
-              </v-col> -->
 
               <v-col cols="6" md="3" class="d-flex align-end">
                 <v-avatar size="50" rounded class="elevation-1">
@@ -207,51 +99,17 @@
       <v-col class="pa-2 mb-3" cols="12" sm="4" md="4">
         <v-card class="fontall pa-md-4" height="355px" elevation="5">
           <header class="fontall pa-2 mb-3" style="text-align: center">
-            Pending Task
+            Employee Age Breakdown
           </header>
-          <!-- <v-simple-table>
-            <template v-slot:default>
-              <thead>
-                <tr>
-                  <th class="text-left">Name</th>
-                  <th class="text-left">Email</th>
-                  <th class="text-left">Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-for="item in profils" :key="item.name">
-                  <td>{{ item.name }}</td>
-                  <td>{{ item.email }}</td>
-                  <td>
-                    <b-badge
-                      :variant="
-                        item.status === 'Pending'
-                          ? 'success'
-                          : item.status === 'Declined'
-                          ? 'danger'
-                          : 'info'
-                      "
-                      pill
-                    >
-                      {{ item.status }}
-                    </b-badge>
-                  </td>
-                </tr>
-              </tbody>
-            </template>
-          </v-simple-table> -->
-          <v-data-table
-            :headers="headers"
-            :items="profils"
-            hide-default-footer
-            disable-sort
-          >
-            <!-- <template v-slot:item.status_name="{ item }">
-              <v-chip label :color="getColorStatus(item.status_name)" dark>
-                {{ item.status_name }}
-              </v-chip>
-            </template> -->
-          </v-data-table>
+          <div>
+            <apexchart
+              type="bar"
+              height="250"
+              :options="chartOptionsColumn"
+              :series="seriesColumn"
+              class="fontall"
+            ></apexchart>
+          </div>
         </v-card>
       </v-col>
       <v-col class="pa-2 mb-3" cols="12" sm="4" md="4">
@@ -307,6 +165,47 @@
           </div>
         </v-card>
       </v-col>
+      <v-col class="pa-2 mb-3" cols="12" sm="6" md="6">
+        <v-card class="fontall pa-md-4" height="355px" elevation="5">
+          <header
+            class="fontall pa-2 mb-3"
+            style="text-align: center"
+            table-header-color="orange"
+          >
+            List Karyawan Terlambat
+          </header>
+
+          <v-data-table
+            id="mytable"
+            :headers="headers"
+            :items="profils"
+            hide-default-footer
+            disable-sort
+          >
+          </v-data-table>
+        </v-card>
+      </v-col>
+      <v-col class="pa-2 mb-3" cols="12" sm="6" md="6">
+        <v-card class="fontall pa-md-4" height="355px" elevation="5">
+          <header class="fontall pa-2 mb-3" style="text-align: center">
+            Pending Task
+          </header>
+
+          <v-tabs v-model="tab" background-color="#9CACA3" color="black" grow>
+            <v-tab v-for="item in items" :key="item" class="itemparent">
+              {{ item.tab }}
+            </v-tab>
+          </v-tabs>
+
+          <v-tabs-items v-model="tab" class="fontall">
+            <v-tab-item v-for="item in items" :key="item">
+              <v-card flat>
+                <v-card-text>{{ item.content }}</v-card-text>
+              </v-card>
+            </v-tab-item>
+          </v-tabs-items>
+        </v-card>
+      </v-col>
     </v-row>
   </v-container>
 </template>
@@ -332,10 +231,20 @@ export default {
     apexchart: VueApexCharts,
   },
   data: () => ({
+    tab: null,
+    items: [
+      { tab: "Pengumuman", content: "Tab 1 Content" },
+      { tab: "Persetujuan", content: "Tab 2 Content" },
+      { tab: "Perpanjangan Kontrak", content: "Tab 3 Content" },
+    ],
+    isMorning() {
+      return new Date().getHours() < 12 ? true : false;
+    },
     seriesDonut: [100, 55],
     chartOptionsDonut: {
       chart: {
         type: "donut",
+        fontFamily: "Montserrat",
       },
       responsive: [
         {
@@ -370,6 +279,7 @@ export default {
         height: 200,
         stacked: true,
         stackType: "100%",
+        fontFamily: "Montserrat",
       },
       plotOptions: {
         bar: {
@@ -394,6 +304,55 @@ export default {
         horizontalAlign: "left",
         offsetX: 40,
         fontWeight: "bold",
+      },
+    },
+    seriesColumn: [
+      {
+        name: "Age Groups",
+        data: [35, 50, 47, 38, 25],
+      },
+    ],
+    chartOptionsColumn: {
+      chart: {
+        type: "bar",
+        height: 200,
+        fontFamily: "Montserrat",
+      },
+      plotOptions: {
+        bar: {
+          horizontal: false,
+          columnWidth: "55%",
+          endingShape: "rounded",
+        },
+      },
+      dataLabels: {
+        enabled: false,
+      },
+      stroke: {
+        show: true,
+        width: 2,
+        colors: ["transparent"],
+      },
+      colors: ["#99A799", "#25695C"],
+      legend: {
+        position: "bottom",
+        horizontalAlign: "left",
+        offsetX: 40,
+        fontWeight: "bold",
+      },
+      xaxis: {
+        categories: ["20's", "30's", "40's", "50's", "60's"],
+        title: {
+          text: "Age Groups",
+        },
+      },
+      yaxis: {
+        title: {
+          text: "Employee",
+        },
+      },
+      fill: {
+        opacity: 1,
       },
     },
 
@@ -543,4 +502,3 @@ export default {
   },
 };
 </script>
-

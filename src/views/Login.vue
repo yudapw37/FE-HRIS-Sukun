@@ -5,30 +5,26 @@
       background-repeat: no-repeat;
       background-attachment: fixed;
       background-size: 100% 100%;
-      height: 100vh;
+      height: 100%;
     "
   >
     <v-form ref="form" v-model="valid" lazy-validation>
       <v-card
-        max-width="350"
-        class="mx-auto px-6 pb-2"
-        style="margin-top: 315px"
+        max-width="320"
+        class="mx-auto px-5 pb-2"
+        style="margin-top: 140px"
         elevation="7"
-        color="#91b3b1"
       >
-        <v-row align="center" justify="center" class="pt-8 pb-0 px-3">
-          <!-- <v-img
-            max-width="250"
-            src="/images/Logo_Login.png"
-            style="margin-top: 2px"
-          ></v-img> -->
+        <v-row align="center" justify="center" class="mb-4 mt-2 pt-6">
+          <v-img contain max-height="100px" src="/images/logo_hris.png"></v-img>
         </v-row>
         <!-- <v-card-title> </v-card-title> -->
         <v-card-text class="pt-1 pb-0 px-3">
           <v-text-field
+            style="border-radius: 10px !important"
             label="Email"
-            class="fontall"
             name="email"
+            class="fontall"
             v-model="email"
             placeholder="Masukkan Email"
             prepend-inner-icon="mdi-email"
@@ -40,6 +36,7 @@
             :rules="[(v) => !!v || 'Field is required']"
           ></v-text-field>
           <v-text-field
+            style="border-radius: 10px !important"
             label="Password"
             class="fontall"
             v-model="password"
@@ -55,25 +52,74 @@
             v-on:keyup="submitLogin"
             :rules="[(v) => !!v || 'Field is required']"
           ></v-text-field>
+          <v-row style="margin-bottom: -8px">
+            <v-col cols="10" sm="10" md="10">
+              <div
+                class="ml-0"
+                style="
+                  background-image: url('/images/bc_captcha2.jpg');
+                  border-radius: 7px !important;
+                  height: 40px;
+                "
+              >
+                <div
+                  style="
+                    text-align: center;
+                    font-size: 25px;
+                    color: darkgrey;
+                    padding-top: 8px;
+                    letter-spacing: 5px;
+                  "
+                >
+                  {{ captchavalue }}
+                </div>
+              </div>
+            </v-col>
+            <v-col cols="2" sm="2" md="2">
+              <v-btn
+                style="margin-bottom: -5px; margin-left: -25px"
+                text
+                class="fontall"
+                icon
+                color="black"
+                @click="generateString(8)"
+              >
+                <v-icon style="font-weight: 900">mdi-reload</v-icon>
+              </v-btn>
+            </v-col>
+          </v-row>
+
+          <v-text-field
+            style="border-radius: 10px !important"
+            label="Verification Code"
+            name="captcha"
+            v-model="captchatextfield"
+            placeholder="Masukkan Kode Captcha"
+            filled
+            class="fontall"
+            required
+            rounded
+            dense
+            v-on:keyup="submitLogin"
+            :rules="[(v) => !!v || 'Field is required']"
+          ></v-text-field>
         </v-card-text>
 
-        <v-card-actions class="pt-0 pb-2 px-3 mb-2">
+        <v-card-actions class="pt-0 pb-2 px-3 mb-1">
           <v-btn
-            dark
             block
             large
             width="200"
             @click="login()"
-            color="#25695C"
+            color="#9CACA3"
             class="mx-auto"
             :disabled="disablevalue"
-          >
-            <v-progress-circular
+            ><v-progress-circular
               v-if="load == true"
               :size="25"
               :width="5"
               indeterminate
-              color="#6a706f"
+              color="#25695C"
             >
             </v-progress-circular>
             <h2 v-if="load == false" class="fontall">Login</h2>
@@ -97,11 +143,14 @@ export default {
     email: "",
     password: "",
     authtoken: "",
+    captchavalue: "",
+    captchatextfield: "",
     load: false,
     disablevalue: false,
-    BaseUrlGet: "https://serviceshris.distribusipelitanusantara.com/api/",
-    BaseUrlUpload: "https://hris.distribusipelitanusantara.com/upload.php",
-    BaseUrl: "https://hris.distribusipelitanusantara.com/",
+    BaseUrlGet: "https://apibatirtegal.salatigaproject.com/api/",
+    BaseUrlUpload: "https://batirtegal.salatigaproject.com/upload.php",
+    BaseUrl: "https://batirtegal.salatigaproject.com/",
+    BaseUrlDBImage: "batirtegal.salatigaproject.com/",
     snackbar: false,
     text: "Test",
     timeout: 2000,
@@ -110,6 +159,7 @@ export default {
   }),
   created() {
     this.firstAccessPage();
+    this.generateString(8);
   },
   methods: {
     firstAccessPage() {
@@ -133,6 +183,10 @@ export default {
       if (BaseUrlUpload) {
         localStorage.removeItem("BaseUrlUpload");
       }
+      var BaseUrlDBImage = localStorage.getItem("BaseUrlDBImage");
+      if (BaseUrlDBImage) {
+        localStorage.removeItem("BaseUrlDBImage");
+      }
       this.load = false;
       this.disablevalue = false;
     },
@@ -143,6 +197,9 @@ export default {
         email: this.email,
         password: this.password,
       };
+      // console.log(datapost);
+      // console.log(this.BaseUrlGet);
+      // this.dialogDetail = false;
       try {
         const response = await axios.post(
           this.BaseUrlGet + "LoginAdmin",
@@ -164,6 +221,7 @@ export default {
           localStorage.setItem("BaseUrlGet", this.BaseUrlGet);
           localStorage.setItem("BaseUrlUpload", this.BaseUrlUpload);
           localStorage.setItem("BaseUrl", this.BaseUrl);
+          localStorage.setItem("BaseUrlDBImage", this.BaseUrlDBImage);
           location.reload();
           this.$router.push("/Dashboard");
         } else {
@@ -171,6 +229,8 @@ export default {
           this.disablevalue = false;
           this.colorsnackbar = "red";
           this.text = "Gagal Login, username dan password salah";
+          this.generateString(8);
+          // this.captchatextfield = "";
         }
       } catch (error) {
         this.load = false;
@@ -179,13 +239,27 @@ export default {
         this.snackbar = true;
         this.colorsnackbar = "red";
         this.text = "Gagal Login, username dan password salah";
+        this.generateString(8);
+        // this.captchatextfield = "";
       }
     },
 
     login() {
       this.$refs.form.validate();
+      // console.log(this.email);
+      // console.log(this.password);
       if (this.$refs.form.validate() == true) {
-        this.cekLogin();
+        // console.log(this.captchavalue);
+        // console.log(this.captchatextfield);
+        if (this.captchatextfield === this.captchavalue) {
+          console.log("benar");
+          this.cekLogin();
+        } else {
+          this.snackbar = true;
+          this.colorsnackbar = "red";
+          this.text = "Code verifikasi captcha salah";
+        }
+        // this.cekLogin();
       } else {
         this.snackbar = true;
         this.colorsnackbar = "red";
@@ -197,7 +271,17 @@ export default {
       if (e.keyCode === 13) {
         this.$refs.form.validate();
         if (this.$refs.form.validate() == true) {
-          this.cekLogin();
+          // console.log(this.captchavalue);
+          // console.log(this.captchatextfield);
+          if (this.captchatextfield === this.captchavalue) {
+            console.log("benar");
+            this.cekLogin();
+          } else {
+            this.snackbar = true;
+            this.colorsnackbar = "red";
+            this.text = "Code verifikasi captcha salah";
+          }
+          //
         } else {
           this.snackbar = true;
           this.colorsnackbar = "red";
@@ -205,6 +289,20 @@ export default {
         }
       }
       // this.log += e.key;
+    },
+
+    generateString(length) {
+      let result = " ";
+      const characters =
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+      const charactersLength = characters.length;
+      for (let i = 0; i < length; i++) {
+        result += characters.charAt(
+          Math.floor(Math.random() * charactersLength)
+        );
+      }
+
+      this.captchavalue = result.replace(/\s/g, "");
     },
   },
 };
@@ -214,7 +312,7 @@ export default {
 .btn,
 button,
 input {
-  border-radius: 35px;
+  border-radius: 10px;
 }
 
 .btn:hover,

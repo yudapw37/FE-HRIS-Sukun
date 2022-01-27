@@ -82,7 +82,7 @@
                   </v-row> -->
                   <v-row>
                     <h5 class="ml-3">Isi Pengajuan</h5>
-                    <v-card class="ml-4" color="#385F73" width="725px">
+                    <v-card class="ml-4" color="#9CACA3" width="725px">
                       <v-card-text class="fontall pa-1">
                         <v-container class="pa-1">
                           <v-simple-table
