@@ -18,7 +18,7 @@
       class="rounded elevation-6 mx-3 pa-1 fontall"
     >
       <template v-slot:item.status="{ item }">
-        <v-chip :color="getColorStatus(item.status)" dark>
+        <v-chip label :color="getColorStatus(item.status)" dark>
           <v-icon medium class="mr-1" color="white">
             {{ getIconStatusAdmin(item.status) }}
           </v-icon>
@@ -238,8 +238,8 @@
         </v-toolbar>
       </template>
       <template v-slot:item.actions="{ item }">
-        <v-icon class="mr-2" @click="detailItem(item)" color="primary">
-          mdi-information
+        <v-icon class="mr-2" @click="detailItem(item)" color="#25695C">
+          mdi-information-outline
         </v-icon>
         <!-- <v-icon @click="deleteItem(item)" color="red"> mdi-delete </v-icon> -->
       </template>
@@ -282,12 +282,18 @@ export default {
     authtoken: "",
     BaseUrlGet: "",
     headers: [
-      { text: "Nama Menu", value: "nama_menu" },
-      { text: "Nama Task", value: "judul" },
-      { text: "Pembuat", value: "name" },
-      { text: "Status", value: "status" },
+      { text: "Nama Menu", value: "nama_menu", align: "center" },
+      { text: "Nama Task", value: "judul", align: "center" },
+      { text: "Pembuat", value: "name", align: "center" },
+      { text: "Status", value: "status", align: "center" },
       //   { text: "User ID", value: "username" },
-      { text: "Actions", value: "actions", sortable: false, width: "15%" },
+      {
+        text: "Actions",
+        value: "actions",
+        align: "center",
+        sortable: false,
+        width: "15%",
+      },
     ],
     headersProduct: [
       { text: "Product", value: "nama_product" },
@@ -496,9 +502,9 @@ export default {
       else return "Rejected";
     },
     getColorStatus(status) {
-      if (status == "Pending") return "orange";
-      else if (status == "Approved") return "green";
-      else return "red";
+      if (status == "Pending") return "#BF9168";
+      else if (status == "Approved") return "#25695C";
+      else return "#D42F2F";
     },
     getIconStatusAdmin(status) {
       if (status == "Pending") return "mdi-update";

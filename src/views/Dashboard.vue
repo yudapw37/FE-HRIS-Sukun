@@ -118,26 +118,6 @@
             Employment Status
           </header>
 
-          <!-- <h5>Permanent</h5>
-          <v-progress-linear value="12" height="30" color="#444941">
-            <template v-slot:default="{ value }">
-              <strong>{{ Math.ceil(value) }}</strong>
-            </template></v-progress-linear
-          >
-          <br />
-          <h5>Contract</h5>
-          <v-progress-linear value="60" height="30" color="#9CACA3">
-            <template v-slot:default="{ value }">
-              <strong>{{ Math.ceil(value) }}</strong>
-            </template></v-progress-linear
-          >
-          <br />
-          <h5>Probation</h5>
-          <v-progress-linear value="44" height="30" color="#E4CA43">
-            <template v-slot:default="{ value }">
-              <strong>{{ Math.ceil(value) }}</strong>
-            </template></v-progress-linear
-          > -->
           <div id="chart" class="fontall">
             <apexchart
               type="bar"
@@ -188,19 +168,87 @@
       <v-col class="pa-2 mb-3" cols="12" sm="6" md="6">
         <v-card class="fontall pa-md-4" height="355px" elevation="5">
           <header class="fontall pa-2 mb-3" style="text-align: center">
-            Pending Task
+            Info & Task
           </header>
 
           <v-tabs v-model="tab" background-color="#9CACA3" color="black" grow>
-            <v-tab v-for="item in items" :key="item" class="itemparent">
-              {{ item.tab }}
-            </v-tab>
+            <v-tab class="itemparent" href="#pengumuman"> Pengumuman </v-tab>
+            <v-tab class="itemparent" href="#persetujuan"> Persetujuan </v-tab>
+            <v-tab class="itemparent" href="#perpanjangkontrak"
+              >Perpanjang Kontrak</v-tab
+            >
           </v-tabs>
 
-          <v-tabs-items v-model="tab" class="fontall">
-            <v-tab-item v-for="item in items" :key="item">
+          <v-tabs-items v-model="tab">
+            <v-tab-item :key="1" value="pengumuman">
               <v-card flat>
-                <v-card-text>{{ item.content }}</v-card-text>
+                <v-data-table
+                  :headers="headersPengumuman"
+                  :items="itemPengumuman"
+                  hide-default-footer
+                  disable-sort
+                  hide-default-header
+                >
+                  <template v-slot:item.actions="{ item }">
+                    <v-icon
+                      class="mr-1"
+                      @click="showEditModal(item)"
+                      color="#bf9168"
+                    >
+                      mdi-pencil-outline
+                    </v-icon>
+
+                    <v-icon @click="showDeleteModal(item)" color="#d42f2f">
+                      mdi-alpha-x-circle-outline
+                    </v-icon>
+                  </template>
+                </v-data-table>
+              </v-card>
+            </v-tab-item>
+
+            <v-tab-item :key="2" value="persetujuan">
+              <v-card flat>
+                <v-data-table
+                  :headers="headersPengumuman"
+                  :items="itemPengumuman"
+                  hide-default-footer
+                  disable-sort
+                  hide-default-header
+                >
+                  <template v-slot:item.actions="{ item }">
+                    <v-simple-checkbox
+                      v-model="item.actions"
+                    ></v-simple-checkbox>
+
+                    <v-icon @click="showDeleteModal(item)" color="#d42f2f">
+                      mdi-alpha-x-circle-outline
+                    </v-icon>
+                  </template>
+                </v-data-table>
+              </v-card>
+            </v-tab-item>
+
+            <v-tab-item :key="3" value="perpanjangkontrak">
+              <v-card flat>
+                <v-card flat>
+                  <v-data-table
+                    :headers="headersKontrak"
+                    :items="itemKontrak"
+                    hide-default-footer
+                    disable-sort
+                    hide-default-header
+                  >
+                    <template v-slot:item.actions="{ item }">
+                      <v-simple-checkbox
+                        v-model="item.actions"
+                      ></v-simple-checkbox>
+
+                      <v-icon @click="showDeleteModal(item)" color="#d42f2f">
+                        mdi-alpha-x-circle-outline
+                      </v-icon>
+                    </template>
+                  </v-data-table>
+                </v-card>
               </v-card>
             </v-tab-item>
           </v-tabs-items>
@@ -232,11 +280,6 @@ export default {
   },
   data: () => ({
     tab: null,
-    items: [
-      { tab: "Pengumuman", content: "Tab 1 Content" },
-      { tab: "Persetujuan", content: "Tab 2 Content" },
-      { tab: "Perpanjangan Kontrak", content: "Tab 3 Content" },
-    ],
     isMorning() {
       return new Date().getHours() < 12 ? true : false;
     },
@@ -341,7 +384,7 @@ export default {
         fontWeight: "bold",
       },
       xaxis: {
-        categories: ["20's", "30's", "40's", "50's", "60's"],
+        categories: ["20'an", "30'an", "40'an", "50'an", "60'an"],
         title: {
           text: "Age Groups",
         },
@@ -363,37 +406,96 @@ export default {
     headers: [
       {
         text: "Nama",
-        align: "start",
+        align: "center",
         sortable: false,
         value: "name",
       },
-      { text: "Email", value: "email" },
+      { text: "Email", value: "email", align: "center" },
 
-      { text: "Status", value: "status_name" },
+      { text: "Kedatangan", value: "time", align: "center" },
     ],
     profils: [
       {
         name: "Admin1",
         email: "admin1@mail.com",
-        status_name: "Approve",
+        time: "10.00",
         status: "1",
       },
       {
         name: "Admin2",
         email: "admin2@mail.com",
-        status_name: "Pending",
+        time: "09.33",
         status: "1",
       },
       {
         name: "Cust1",
         email: "cust1@mail.com",
-        status_name: "Decline",
+        time: "09.55",
         status: "1",
       },
       {
         name: "Cust2",
         email: "cust2@mail.com",
-        status_name: "Pending",
+        time: "09.25",
+        status: "1",
+      },
+    ],
+    headersPengumuman: [
+      {
+        text: "Isi",
+        align: "start",
+        sortable: false,
+        value: "isi",
+      },
+      { text: "Actions", value: "actions", sortable: false, width: "15%" },
+    ],
+    itemPengumuman: [
+      {
+        isi: "Akhir bulan akan diadakan kerja bakti untuk seluruh kantor",
+      },
+      {
+        isi: "Peresmian kepala cabang akan dilakukan pada hari selasa",
+      },
+      {
+        isi: "Karena Hari Minggu tanggal merah, kita libur",
+      },
+    ],
+    headersKontrak: [
+      {
+        text: "Nama",
+        align: "center",
+        sortable: false,
+        value: "name",
+      },
+      { text: "Email", value: "email", align: "center" },
+      {
+        text: "Actions",
+
+        value: "actions",
+        sortable: false,
+        width: "15%",
+      },
+    ],
+    itemKontrak: [
+      {
+        name: "Admin1",
+        email: "admin1@mail.com",
+        status: "1",
+      },
+      {
+        name: "Admin2",
+        email: "admin2@mail.com",
+
+        status: "1",
+      },
+      {
+        name: "Cust1",
+        email: "cust1@mail.com",
+        status: "1",
+      },
+      {
+        name: "Cust2",
+        email: "cust2@mail.com",
         status: "1",
       },
     ],

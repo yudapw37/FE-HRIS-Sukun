@@ -147,10 +147,10 @@ export default {
     captchatextfield: "",
     load: false,
     disablevalue: false,
-    BaseUrlGet: "https://apibatirtegal.salatigaproject.com/api/",
-    BaseUrlUpload: "https://batirtegal.salatigaproject.com/upload.php",
-    BaseUrl: "https://batirtegal.salatigaproject.com/",
-    BaseUrlDBImage: "batirtegal.salatigaproject.com/",
+    BaseUrlGet: "https://hrisapi.salatigaproject.com/api/",
+    BaseUrlUpload: "https://hrisapi.salatigaproject.com/upload.php",
+    BaseUrl: "https://hrisapi.salatigaproject.com/",
+    BaseUrlDBImage: "hrisapi.salatigaproject.com/",
     snackbar: false,
     text: "Test",
     timeout: 2000,
@@ -202,7 +202,7 @@ export default {
       // this.dialogDetail = false;
       try {
         const response = await axios.post(
-          this.BaseUrlGet + "LoginAdmin",
+          this.BaseUrlGet + "LoginUser",
           datapost
         );
         console.log(response.data.data.status.code);
