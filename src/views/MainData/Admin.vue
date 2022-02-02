@@ -18,7 +18,7 @@
       class="rounded elevation-6 mx-3 pa-1 itemchild"
     >
       <template v-slot:item.role_name="{ item }">
-        <v-chip label :color="getColorStatus(item.role)" dark>
+        <v-chip label :color="getColorStatus(item.role_code)" dark>
           {{ item.role_name }}
         </v-chip>
       </template>
@@ -54,7 +54,7 @@
                     <v-row>
                       <v-col cols="12" sm="12" md="12" class="pa-1">
                         <v-select
-                          v-model="defaultItem.role"
+                          v-model="defaultItem.role_code"
                           :items="itemsrole"
                           label="Pilih Role Admin"
                           class="fontall"
@@ -131,18 +131,6 @@
                           clearable
                           :rules="[(v) => !!v || 'Field is required']"
                         ></v-select>
-                      </v-col>
-                      <v-col cols="12" sm="12" md="12" class="pa-1">
-                        <v-textarea
-                          v-model="defaultItem.alamat"
-                          outlined
-                          label="Alamat"
-                          class="fontall"
-                          color="#25695c"
-                          dense
-                          rows="3"
-                          :rules="[(v) => !!v || 'Field is required']"
-                        ></v-textarea>
                       </v-col>
                     </v-row>
                   </v-container>
@@ -277,22 +265,22 @@ export default {
     dataobject: [],
 
     defaultItem: {
-      code: "",
+      user_id: "",
       nama: "",
       no_telp: "",
       alamat: "",
       pekerjaan: "",
       status_admin: "",
       password: "",
-      role: "",
+      role_code: "",
       email: "",
       role_name: "",
     },
 
     itemsrole: [],
     itemsstatus_admin: [
-      { text: "Aktif", value: "aktif" },
-      { text: "Non_Aktif", value: "non_aktif" },
+      { text: "Aktif", value: 0 },
+      { text: "Tidak_Aktif", value: 1 },
     ],
 
     AddModal: true,
@@ -320,7 +308,7 @@ export default {
   methods: {
     async initialize() {
       try {
-        const response = await axios.get(this.BaseUrlGet + "GetAdmin", {
+        const response = await axios.get(this.BaseUrlGet + "GetUser", {
           headers: {
             Authorization: `Bearer ` + this.authtoken,
           },
@@ -344,7 +332,7 @@ export default {
     },
     async getRole() {
       try {
-        const response = await axios.get(this.BaseUrlGet + "GetRole", {
+        const response = await axios.get(this.BaseUrlGet + "GetAllRole", {
           headers: {
             Authorization: `Bearer ` + this.authtoken,
           },
@@ -369,17 +357,17 @@ export default {
     async addApi() {
       const datapost = {
         name: this.defaultItem.nama,
-        role: this.defaultItem.role,
+        role_code: this.defaultItem.role_code,
         no_telp: this.defaultItem.no_telp,
         email: this.defaultItem.email,
         password: this.defaultItem.password,
-        status_admin: this.defaultItem.status_admin,
-        alamat: this.defaultItem.alamat,
+        // status_admin: this.defaultItem.status_admin,
+        // alamat: this.defaultItem.alamat,
       };
 
       try {
         const response = await axios.post(
-          this.BaseUrlGet + "RegistAdmin",
+          this.BaseUrlGet + "RegistUser",
           datapost,
           {
             headers: {
@@ -409,11 +397,11 @@ export default {
       const datapost = {
         code: this.defaultItem.code,
         name: this.defaultItem.nama,
-        role: this.defaultItem.role,
+        role_code: this.defaultItem.role_code,
         no_telp: this.defaultItem.no_telp,
         email: this.defaultItem.email,
-        status_admin: this.defaultItem.status_admin,
-        alamat: this.defaultItem.alamat,
+        statuss: this.defaultItem.status_admin,
+        // alamat: this.defaultItem.alamat,
       };
       console.log(datapost);
       // this.dialogDetail = false;
@@ -481,9 +469,9 @@ export default {
       }
     },
     async resetItemConfirm() {
-      console.log(this.defaultItem.employee_no);
+      console.log(this.defaultItem);
       const datapost = {
-        code: this.defaultItem.code,
+        user_id: this.defaultItem.user_id,
         email: this.defaultItem.email,
       };
       console.log(datapost);
@@ -506,7 +494,7 @@ export default {
           this.textsnackbar = "Sukses mengubah data";
           this.initialize();
         } else {
-          this.dialog = true;
+          this.dialogReset = true;
           this.snackbar = true;
           this.colorsnackbar = "red";
           this.textsnackbar = "Gagal mengubah data";
@@ -514,14 +502,14 @@ export default {
       } catch (error) {
         console.error(error.response);
         if (error.response.status == 401) {
-          this.dialog = true;
+          this.dialogReset = true;
           this.snackbar = true;
           this.colorsnackbar = "red";
           this.textsnackbar = "Gagal mengubah data";
           localStorage.removeItem("token");
           this.$router.push("/");
         } else {
-          this.dialog = true;
+          this.dialogReset = true;
           this.snackbar = true;
           this.colorsnackbar = "red";
           this.textsnackbar = "Gagal mengubah data";
@@ -536,7 +524,7 @@ export default {
       this.defaultItem.alamat = "";
       this.defaultItem.pekerjaan = "";
       this.defaultItem.status_admin = "";
-      this.defaultItem.role = "";
+      this.defaultItem.role_code = "";
       this.defaultItem.email = "";
       this.defaultItem.role_name = "";
       this.formTitle = "Add Item";
@@ -549,7 +537,7 @@ export default {
     },
     showEditModal(item) {
       this.defaultItem = Object.assign({}, item);
-      this.defaultItem.role = parseInt(item.role);
+      this.defaultItem.role_code = parseInt(item.role_code);
       this.formTitle = "Edit Item";
       console.log(this.defaultItem);
       this.AddModal = false;
@@ -593,15 +581,17 @@ export default {
     },
 
     resetItem(item) {
-      this.defaultItem.code = item.code;
+      this.defaultItem.user_id = item.user_id;
       this.defaultItem.email = item.email;
       this.dialogReset = true;
     },
 
-    getColorStatus(role) {
-      if (role == "1") return "#25695C";
-      else if (role == "2") return "#BF9168";
-      else if (role == "3") return "#D42F2F";
+    getColorStatus(role_code) {
+      console.log(role_code);
+      if (role_code == 0) return "#25695C";
+      else if (role_code == 1) return "#25695C";
+      else if (role_code == 2) return "#BF9168";
+      else if (role_code == 3) return "#D42F2F";
       else return "#9CACA3";
     },
   },
