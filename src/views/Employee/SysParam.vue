@@ -411,6 +411,7 @@ export default {
       role_code: "",
       email: "",
       role_name: "",
+      nik: "",
     },
 
     itemsdept:[],

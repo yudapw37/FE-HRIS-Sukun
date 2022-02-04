@@ -47,6 +47,7 @@
                   <v-icon>mdi-close-box-outline</v-icon>
                 </v-btn>
               </v-card-title>
+              <!-- <v-divider></v-divider> -->
               <v-card-text class="fontall">
                 <v-form ref="form" v-model="valid" lazy-validation>
                   <v-container fluid>

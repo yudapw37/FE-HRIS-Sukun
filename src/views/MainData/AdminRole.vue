@@ -33,6 +33,9 @@
           ></v-text-field>
           <v-divider class="mx-4" inset vertical></v-divider>
           <v-spacer></v-spacer>
+          <!-- <v-btn dark class="mb-2" @click="showAddModal()" color="green">
+            <v-icon small>mdi-plus</v-icon> Add Item
+          </v-btn> -->
           <!-- Modal Add Edit -->
           <v-dialog persistent v-model="dialog" max-width="600px">
             <v-card>

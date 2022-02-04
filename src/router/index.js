@@ -4,7 +4,7 @@ import Dashboard from '../views/Dashboard.vue'
 import Login from '../views/Login.vue'
 import GantiPassword from '../views/GantiPassword.vue'
 
-import Customer1 from '../views/MainData/Customer.vue'
+import Customer from '../views/MainData/Customer.vue'
 import Admin from '../views/MainData/Admin.vue'
 import AdminRole from '../views/MainData/AdminRole.vue'
 
@@ -59,9 +59,9 @@ const routes = [
   },
   
   {
-    path: '/Customer1',
-    name: 'Customer1',
-    component: Customer1
+    path: '/Customer',
+    name: 'Customer',
+    component: Customer
   },
   {
     path: '/Admin',
