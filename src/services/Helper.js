@@ -1,7 +1,6 @@
 export default class Helper { 
     gettanggal(val) {
         var bulanIndo = [
-          "",
           "Jan",
           "Feb",
           "Mar",
