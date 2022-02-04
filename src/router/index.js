@@ -10,6 +10,7 @@ import AdminRole from '../views/MainData/AdminRole.vue'
 
 import PendingTask from '../views/Task/PendingTask.vue'
 
+import SysParam from '../views/Employee/SysParam.vue'
 import Employee from '../views/Employee/Employee.vue'
 
 import Loan from '../views/Payroll/Loan.vue'
@@ -79,6 +80,11 @@ const routes = [
     component: PendingTask
   },
 
+  {
+    path: '/SysParam',
+    name: 'SysParam',
+    component: SysParam
+  },
   {
     path: '/Employee',
     name: 'Employee',

@@ -54,6 +54,21 @@
                     <v-row>
                       <v-col cols="12" sm="12" md="12" class="pa-1">
                         <v-select
+                          v-model="defaultItem.nik"
+                          :items="itemsemp"
+                          label="Pilih Employee"
+                          class="fontall"
+                          item-text="nama_lengkap"
+                          item-value="no_induk_karyawan"
+                          outlined
+                          color="#25695c"
+                          dense
+                          clearable
+                          :rules="[(v) => !!v || 'Field is required']"
+                        ></v-select>
+                      </v-col>
+                      <v-col cols="12" sm="12" md="12" class="pa-1">
+                        <v-select
                           v-model="defaultItem.role_code"
                           :items="itemsrole"
                           label="Pilih Role Admin"
@@ -69,31 +84,9 @@
                       </v-col>
                       <v-col cols="12" sm="6" md="6" class="pa-1">
                         <v-text-field
-                          v-model="defaultItem.nama"
-                          outlined
-                          label="Nama Admin"
-                          class="fontall"
-                          color="#25695c"
-                          dense
-                          :rules="[(v) => !!v || 'Field is required']"
-                        ></v-text-field>
-                      </v-col>
-                      <v-col cols="12" sm="6" md="6" class="pa-1">
-                        <v-text-field
-                          v-model="defaultItem.no_telp"
-                          outlined
-                          label="No Telp"
-                          class="fontall"
-                          color="#25695c"
-                          dense
-                          :rules="[(v) => !!v || 'Field is required']"
-                        ></v-text-field>
-                      </v-col>
-                      <v-col cols="12" sm="6" md="6" class="pa-1">
-                        <v-text-field
                           v-model="defaultItem.email"
                           outlined
-                          label="No Telp"
+                          label="Email"
                           class="fontall"
                           color="#25695c"
                           dense
@@ -116,9 +109,21 @@
                           color="#25695c"
                           dense
                         ></v-text-field>
+                      </v-col>                      
+                      <v-col cols="12" sm="6" md="6" class="pa-1">
+                        <v-text-field
+                          v-model="defaultItem.no_telp"
+                          outlined
+                          label="No Telp"
+                          class="fontall"
+                          color="#25695c"
+                          dense
+                          :rules="[(v) => !!v || 'Field is required']"
+                        ></v-text-field>
                       </v-col>
                       <v-col cols="12" sm="6" md="6" class="pa-1">
                         <v-select
+                        v-if="AddModal == false"
                           v-model="defaultItem.status_admin"
                           :items="itemsstatus_admin"
                           item-text="text"
@@ -219,6 +224,8 @@
 
 <script>
 import axios from "axios";
+import HelperGlobal from "../../services/Helper";
+const HelperGlobalService = new HelperGlobal();
 
 export default {
   name: "Admin",
@@ -238,7 +245,7 @@ export default {
 
     rules: {
       required: (value) => !!value || "Required.",
-      countermin: (value) => value.length > 6 || "Min 6 characters",
+      countermin: (value) => value.length > 5 || "Min 6 characters",
       email: (value) => {
         const pattern =
           /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -275,9 +282,11 @@ export default {
       role_code: "",
       email: "",
       role_name: "",
+      nik: "",
     },
 
     itemsrole: [],
+    itemsemp: [],
     itemsstatus_admin: [
       { text: "Aktif", value: 0 },
       { text: "Tidak_Aktif", value: 1 },
@@ -303,6 +312,7 @@ export default {
     }
     this.initialize();
     this.getRole();
+    this.getEmp();
   },
 
   methods: {
@@ -354,17 +364,31 @@ export default {
         }
       }
     },
-    async addApi() {
-      const datapost = {
-        name: this.defaultItem.nama,
-        role_code: this.defaultItem.role_code,
-        no_telp: this.defaultItem.no_telp,
-        email: this.defaultItem.email,
-        password: this.defaultItem.password,
-        // status_admin: this.defaultItem.status_admin,
-        // alamat: this.defaultItem.alamat,
-      };
-
+    async getEmp() {
+      try {
+        const response = await axios.get(this.BaseUrlGet + "GetAllEmployee", {
+          headers: {
+            Authorization: `Bearer ` + this.authtoken,
+          },
+        });
+        console.log(response.data.data.result.data);
+        if (response.data.length != 0) {
+          this.itemsemp = response.data.data.result.data;
+        } else {
+          console.log("Kosong");
+          this.itemsemp = [];
+        }
+      } catch (error) {
+        console.error(error);
+        if (error.response.status == 401) {
+          localStorage.removeItem("token");
+          this.$router.push("/");
+        } else {
+          this.itemsemp = [];
+        }
+      }
+    },
+    async addApi(datapost) {
       try {
         const response = await axios.post(
           this.BaseUrlGet + "RegistUser",
@@ -376,6 +400,7 @@ export default {
           }
         );
         console.log(response.data.data.result);
+        this.loading = false;
         if (response.data.data.result == "success") {
           this.dialog = false;
           this.snackbar = true;
@@ -387,27 +412,18 @@ export default {
         }
       } catch (error) {
         console.error(error);
+        this.loading = false;
         if (error.response.status == 401) {
           localStorage.removeItem("token");
           this.$router.push("/");
         }
       }
     },
-    async editApi() {
-      const datapost = {
-        code: this.defaultItem.code,
-        name: this.defaultItem.nama,
-        role_code: this.defaultItem.role_code,
-        no_telp: this.defaultItem.no_telp,
-        email: this.defaultItem.email,
-        statuss: this.defaultItem.status_admin,
-        // alamat: this.defaultItem.alamat,
-      };
+    async editApi(datapost) {
       console.log(datapost);
-      // this.dialogDetail = false;
       try {
         const response = await axios.post(
-          this.BaseUrlGet + "EditAdmin",
+          this.BaseUrlGet + "EditUser",
           datapost,
           {
             headers: {
@@ -416,6 +432,7 @@ export default {
           }
         );
         console.log(response.data.data.result);
+        this.loading = false;
         if (response.data.data.result == "success") {
           this.dialog = false;
           this.snackbar = true;
@@ -427,6 +444,7 @@ export default {
         }
       } catch (error) {
         console.error(error);
+        this.loading = false;
         if (error.response.status == 401) {
           localStorage.removeItem("token");
           this.$router.push("/");
@@ -435,13 +453,13 @@ export default {
     },
     async deleteApi() {
       const datapost = {
-        code: this.defaultItem.code,
+        user_id: this.defaultItem.user_id,
       };
       console.log(datapost);
       // this.dialogDetail = false;
       try {
         const response = await axios.post(
-          this.BaseUrlGet + "DeleteAdmin",
+          this.BaseUrlGet + "DeleteUser",
           datapost,
           {
             headers: {
@@ -453,7 +471,7 @@ export default {
         if (response.data.data.result == "success") {
           this.snackbar = true;
           this.colorsnackbar = "green";
-          this.textsnackbar = "Sukses menambahkan data";
+          this.textsnackbar = "Sukses menghapus data";
 
           this.dialogDelete = false;
           this.initialize();
@@ -518,10 +536,10 @@ export default {
     },
 
     showAddModal() {
-      this.defaultItem.code = "";
+      this.defaultItem.user_id = "";
       this.defaultItem.nama = "";
       this.defaultItem.no_telp = "";
-      this.defaultItem.alamat = "";
+      this.defaultItem.nik = "";
       this.defaultItem.pekerjaan = "";
       this.defaultItem.status_admin = "";
       this.defaultItem.role_code = "";
@@ -529,9 +547,6 @@ export default {
       this.defaultItem.role_name = "";
       this.formTitle = "Add Item";
       // console.log();
-      if (this.$refs.form) {
-        this.$refs.form.reset();
-      }
       this.AddModal = true;
       this.dialog = true;
     },
@@ -558,15 +573,28 @@ export default {
 
     save() {
       this.loading = true;
-      this.$refs.form.validate();
 
-      if (this.$refs.form.validate() == true) {
-        if (this.defaultItem.code) {
+      const datapost = {
+        nik: this.defaultItem.nik,
+        role_code: this.defaultItem.role_code,
+        no_telp: this.defaultItem.no_telp,
+        email: this.defaultItem.email,
+        password: "default",
+        status_admin: "default",
+        user_id: "default",
+        // alamat: this.defaultItem.alamat,
+      };
+
+      if (HelperGlobalService.checkMandatory(datapost, "object") == true) {
+        if (this.defaultItem.user_id) {
           console.log("Save Edit");
-          this.editApi();
+          datapost.user_id= this.defaultItem.user_id,
+          datapost.status_admin= this.defaultItem.status_admin,
+          this.editApi(datapost);
         } else {
           console.log("Save Add");
-          this.addApi();
+          datapost.password= this.defaultItem.password,
+          this.addApi(datapost);
         }
       } else {
         this.snackbar = true;

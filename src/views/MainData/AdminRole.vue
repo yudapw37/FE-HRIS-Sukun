@@ -180,7 +180,7 @@ export default {
     menudropdown: "",
 
     defaultItem: {
-      code: "",
+      user_id: "",
       Nama: "",
       role: "",
       role_name: "",
@@ -218,7 +218,7 @@ export default {
     async initialize() {
       try {
         const response = await axios.get(
-          this.BaseUrlGet + "GetAdminMenuAccess",
+          this.BaseUrlGet + "GetUserMenuAccess",
           {
             headers: {
               Authorization: `Bearer ` + this.authtoken,
@@ -273,7 +273,7 @@ export default {
       // this.dialogDetail = false;
       try {
         const response = await axios.post(
-          this.BaseUrlGet + "EditMenuAccessadm",
+          this.BaseUrlGet + "EditMenuAccess",
           datapost,
           {
             headers: {
@@ -282,6 +282,7 @@ export default {
           }
         );
         console.log(response.data.data.result);
+      this.loading = false;
         if (response.data.data.result == "success") {
           this.dialog = false;
           this.snackbar = true;
@@ -295,6 +296,7 @@ export default {
           this.textsnackbar = "Gagal mengubah data";
         }
       } catch (error) {
+      this.loading = false;
         console.error(error.response);
         if (error.response.status == 401) {
           this.dialog = true;
@@ -314,7 +316,7 @@ export default {
 
     showEditModal(item) {
       console.log(item);
-      this.defaultItem.code = item.code;
+      this.defaultItem.user_id = item.user_id;
       this.defaultItem.Nama = item.Nama;
       this.defaultItem.role = item.role;
       this.defaultItem.role_name = item.role_name;
@@ -377,7 +379,7 @@ export default {
 
     save() {
       this.loading = true;
-      if (this.defaultItem.code.length != 0) {
+      if (this.defaultItem.user_id.length != 0) {
         var listmenupost = "";
         var listmenutemp = "";
         for (let n = 0; n < this.defaultItem.MenuTable.length; n++) {
@@ -391,7 +393,7 @@ export default {
         listmenupost = "[" + listmenutemp + "]";
         console.log(listmenupost);
         const datapost = {
-          code: this.defaultItem.code,
+          user_code: this.defaultItem.user_id,
           list_menu: listmenupost,
           MenuTable: this.defaultItem.MenuTable,
         };
